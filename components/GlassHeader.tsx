@@ -47,14 +47,6 @@ export default function GlassHeader() {
                             <a
                                 key={item}
                                 href={`#${item.toLowerCase()}`}
-                                onClick={(e) => {
-                                    if (item === 'Process') {
-                                        e.preventDefault();
-                                        // Scroll to ~70% of the scrollable distance (Phase 3 center)
-                                        // Total height 3.5vh, scrollable 2.5vh. 0.7 * 2.5 = 1.75vh
-                                        window.scrollTo({ top: window.innerHeight * 1.75, behavior: 'smooth' });
-                                    }
-                                }}
                                 className="text-sm font-medium text-slate-700 hover:text-blue-600 transition-colors relative group"
                             >
                                 {item}

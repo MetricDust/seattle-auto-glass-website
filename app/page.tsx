@@ -7,6 +7,7 @@ import EmergencyAlert from "@/components/EmergencyAlert";
 import GlassScrollCanvas from "@/components/GlassScrollCanvas";
 import ServiceGlassOverlay from "@/components/ServiceGlassOverlay";
 import GlassServiceGrid from "@/components/GlassServiceGrid";
+import GlassProcessSection from "@/components/GlassProcessSection";
 import InsuranceGlassPanel from "@/components/InsuranceGlassPanel";
 import TestimonialGlassCards from "@/components/TestimonialGlassCards";
 import ContactGlassForm from "@/components/ContactGlassForm";
@@ -48,6 +49,7 @@ export default function Home() {
       {/* Post-Scroll Content with Glass Effects */}
       <div className="relative z-20 px-4 md:px-8 lg:px-16 py-20 -mt-40 bg-gradient-to-b from-transparent to-white">
         <GlassServiceGrid />
+        <GlassProcessSection />
         <InsuranceGlassPanel />
         <TestimonialGlassCards />
         <ContactGlassForm />
