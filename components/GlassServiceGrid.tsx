@@ -58,8 +58,8 @@ export default function GlassServiceGrid() {
                             key={idx}
                             className="glass-card rounded-2xl p-8 hover:scale-[1.02] transition-all duration-300 group"
                         >
-                            <div className="relative w-20 h-20 mb-6">
-                                <div className="w-full h-full rounded-full overflow-hidden border border-blue-400/80 shadow-lg group-hover:scale-110 transition-transform">
+                            <div className="relative w-14 h-14 mb-6">
+                                <div className="w-full h-full rounded-full overflow-hidden border border-blue-400/80 shadow-md group-hover:scale-110 transition-transform">
                                     <img
                                         src="/images/chipped-glass.png"
                                         alt="Service Image"
@@ -67,11 +67,11 @@ export default function GlassServiceGrid() {
                                     />
                                 </div>
                                 <div className="absolute inset-0 flex items-center justify-center">
-                                    <service.icon className="w-10 h-10 text-blue-700 drop-shadow-md group-hover:scale-110 transition-transform" />
+                                    <service.icon className="w-7 h-7 text-blue-700 drop-shadow-md group-hover:scale-110 transition-transform" />
                                 </div>
                             </div>
 
-                            <h3 className="text-xl font-bold mb-3 text-slate-800">{service.title}</h3>
+                            <h3 className="text-lg font-bold mb-3 text-slate-800">{service.title}</h3>
                             <p className="text-slate-600 mb-6 leading-relaxed">
                                 {service.desc}
                             </p>
