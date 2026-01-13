@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, useCallback, useMemo } from "react";
-import { MotionValue, useMotionValueEvent } from "framer-motion";
+import { MotionValue, useMotionValueEvent, motion } from "framer-motion";
 
 export interface GlassScrollCanvasProps {
   /** Scroll progress value from framer-motion's useScroll (0 to 1) */
@@ -205,12 +205,118 @@ export default function GlassScrollCanvas({
 
   if (!isLoaded) {
     return (
-      <div className="flex flex-col items-center justify-center w-full h-full bg-slate-900 text-white p-10 text-center">
-        <p className="text-2xl font-bold animate-pulse mb-4">
-          Loading Experience...
-        </p>
-        <div className="w-64 h-2 bg-white/20 rounded-full overflow-hidden">
-          <div className="h-full bg-blue-500 animate-[loading_2s_ease-in-out_infinite]" />
+      <div className="flex flex-col items-center justify-center w-full h-full bg-slate-900 text-white p-10 text-center relative overflow-hidden">
+        {/* Animated Background Gradient */}
+        <div className="absolute inset-0 bg-slate-950">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-blue-500/10 rounded-full blur-[100px] animate-pulse"></div>
+        </div>
+
+        <div className="relative z-10 flex flex-col items-center gap-8">
+          <div className="relative w-32 h-32">
+            <svg
+              viewBox="0 0 100 100"
+              className="w-full h-full overflow-visible"
+            >
+              {/* Central Impact Point */}
+              <motion.circle
+                cx="50"
+                cy="50"
+                r="2"
+                fill="white"
+                initial={{ opacity: 0, scale: 0 }}
+                animate={{ opacity: [0, 1, 1, 0], scale: [0, 1.5, 1.5, 0] }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              />
+
+              {/* Crack 1 - Top Right */}
+              <motion.path
+                d="M 50 50 L 65 35 L 75 40 L 90 25"
+                stroke="white"
+                strokeWidth="1.5"
+                fill="none"
+                strokeLinecap="round"
+                initial={{ pathLength: 0, opacity: 0 }}
+                animate={{ pathLength: [0, 1, 1, 0], opacity: [0, 1, 1, 0] }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              />
+              {/* Crack 2 - Bottom Right */}
+              <motion.path
+                d="M 50 50 L 60 70 L 80 75 L 90 90"
+                stroke="white"
+                strokeWidth="1.5"
+                fill="none"
+                strokeLinecap="round"
+                initial={{ pathLength: 0, opacity: 0 }}
+                animate={{ pathLength: [0, 1, 1, 0], opacity: [0, 1, 1, 0] }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              />
+              {/* Crack 3 - Bottom Left */}
+              <motion.path
+                d="M 50 50 L 35 65 L 25 60 L 10 80"
+                stroke="white"
+                strokeWidth="1.5"
+                fill="none"
+                strokeLinecap="round"
+                initial={{ pathLength: 0, opacity: 0 }}
+                animate={{ pathLength: [0, 1, 1, 0], opacity: [0, 1, 1, 0] }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              />
+              {/* Crack 4 - Top Left */}
+              <motion.path
+                d="M 50 50 L 40 30 L 20 25 L 10 10"
+                stroke="white"
+                strokeWidth="1.5"
+                fill="none"
+                strokeLinecap="round"
+                initial={{ pathLength: 0, opacity: 0 }}
+                animate={{ pathLength: [0, 1, 1, 0], opacity: [0, 1, 1, 0] }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              />
+            </svg>
+          </div>
+
+          <motion.div>
+            <p className="text-xl font-light tracking-[0.2em] text-blue-200 uppercase mb-2">
+              Restoring Clarity
+            </p>
+            <div className="flex justify-center gap-1">
+              <motion.div
+                className="w-1.5 h-1.5 bg-blue-400 rounded-full"
+                animate={{ opacity: [0.3, 1, 0.3] }}
+                transition={{ duration: 1, repeat: Infinity, delay: 0 }}
+              />
+              <motion.div
+                className="w-1.5 h-1.5 bg-blue-400 rounded-full"
+                animate={{ opacity: [0.3, 1, 0.3] }}
+                transition={{ duration: 1, repeat: Infinity, delay: 0.2 }}
+              />
+              <motion.div
+                className="w-1.5 h-1.5 bg-blue-400 rounded-full"
+                animate={{ opacity: [0.3, 1, 0.3] }}
+                transition={{ duration: 1, repeat: Infinity, delay: 0.4 }}
+              />
+            </div>
+          </motion.div>
         </div>
       </div>
     );
