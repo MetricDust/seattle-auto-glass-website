@@ -86,22 +86,14 @@ export default function GlassProcessSection() {
                 onMouseMove={handleMouseMove}
                 onMouseLeave={handleMouseLeave}
               >
-                {/* 
-                  Refactored logic based on Angular snippet:
-                  pos.x = mapped -1 to 1
-                  pos.y = mapped 1 to -1
-                  translate3d(tx * -pos.x, ty * pos.y, tz * pos.z)
-                  rotateX(rx * pos.y) rotateY(ry * pos.x)
-                */}
-
                 {/* Layer 3 - Back (Config 0: Base with Rotation) */}
                 <motion.div
                   style={{
-                    x: useTransform(smoothX, [-0.5, 0.5], [0, 0]), // tx: 0
-                    y: useTransform(smoothY, [-0.5, 0.5], [0, 0]), // ty: 0
-                    translateZ: 0, // tz: 0
-                    rotateX: useTransform(smoothY, [-0.5, 0.5], [-25, 25]), // rx: 25
-                    rotateY: useTransform(smoothX, [-0.5, 0.5], [-25, 25]), // ry: 25
+                    x: 0,
+                    y: 0,
+                    translateZ: 0,
+                    rotateX: useTransform(smoothY, [-0.5, 0.5], [-25, 25]),
+                    rotateY: useTransform(smoothX, [-0.5, 0.5], [-25, 25]),
                     boxShadow: useTransform([smoothX, smoothY], ([x, y]) => {
                       const px = (x as number) * 2;
                       const py = (y as number) * -2;
@@ -122,8 +114,8 @@ export default function GlassProcessSection() {
                 {/* Layer 2 - Front (Config 1: Floating with Translation) */}
                 <motion.div
                   style={{
-                    x: useTransform(smoothX, [-0.5, 0.5], [25, -25]), // tx: -25 * -pos.x
-                    y: useTransform(smoothY, [-0.5, 0.5], [25, -25]), // ty: -25 * pos.y
+                    x: useTransform(smoothX, [-0.5, 0.5], [25, -25]),
+                    y: useTransform(smoothY, [-0.5, 0.5], [25, -25]),
                     translateZ: 40,
                     transformStyle: "preserve-3d",
                   }}
@@ -144,7 +136,7 @@ export default function GlassProcessSection() {
                     translateZ: -50,
                   }}
                   className="absolute -top-12 -right-12 w-32 h-32 bg-blue-400/10 blur-3xl rounded-full"
-                ></motion.div>
+                />
               </div>
             </div>
 

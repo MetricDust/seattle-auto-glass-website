@@ -154,68 +154,6 @@ export default function GlassServiceGrid() {
               safe on the road.
             </p>
           </div>
-
-          {/* Mobile-friendly decorative elements */}
-          <div className="flex items-center justify-center w-full">
-            {/* Left Side Cracks */}
-            <div className="hidden lg:block w-32 h-20 opacity-60">
-              <svg
-                width="100%"
-                height="100%"
-                viewBox="0 0 200 100"
-                className="overflow-visible"
-              >
-                <motion.path
-                  d="M 200 50 L 160 45 L 130 65 L 90 40 L 50 55 L 10 35"
-                  fill="transparent"
-                  stroke="#60A5FA"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  initial={{ pathLength: 0, opacity: 0 }}
-                  animate={{ pathLength: [0, 1, 0], opacity: [0, 1, 0] }}
-                  transition={{
-                    duration: 5,
-                    ease: "easeInOut",
-                    repeat: Infinity,
-                    repeatDelay: 0.5,
-                  }}
-                />
-              </svg>
-            </div>
-
-            {/* Mobile dots */}
-            <div className="flex lg:hidden items-center gap-2">
-              <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
-              <div className="w-2 h-2 bg-blue-300 rounded-full animate-pulse delay-75"></div>
-              <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse delay-150"></div>
-            </div>
-
-            {/* Right Side Cracks */}
-            <div className="hidden lg:block w-32 h-20 opacity-60">
-              <svg
-                width="100%"
-                height="100%"
-                viewBox="0 0 200 100"
-                className="overflow-visible"
-              >
-                <motion.path
-                  d="M 0 50 L 40 45 L 70 65 L 110 40 L 150 55 L 190 35"
-                  fill="transparent"
-                  stroke="#60A5FA"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  initial={{ pathLength: 0, opacity: 0 }}
-                  animate={{ pathLength: [0, 1, 0], opacity: [0, 1, 0] }}
-                  transition={{
-                    duration: 5,
-                    ease: "easeInOut",
-                    repeat: Infinity,
-                    repeatDelay: 0.5,
-                  }}
-                />
-              </svg>
-            </div>
-          </div>
         </div>
 
         {/* Top 3 Services with Zoom Animation */}
@@ -228,8 +166,17 @@ export default function GlassServiceGrid() {
         {/* Remaining Services - Standard Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.slice(3).map((service, idx) => (
-            <div
+            <motion.div
               key={idx}
+              initial={{ opacity: 0, scale: 0.8, y: 20 }}
+              whileInView={{ opacity: 1, scale: 1, y: 0 }}
+              viewport={{ once: false, amount: 0.2 }}
+              transition={{
+                type: "spring",
+                stiffness: 400,
+                damping: 30,
+                delay: idx * 0.05,
+              }}
               className="glass-card rounded-2xl p-8 hover:scale-[1.02] transition-all duration-300 group"
             >
               <div className="relative w-14 h-14 mb-6">
@@ -258,7 +205,7 @@ export default function GlassServiceGrid() {
                   </li>
                 ))}
               </ul>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
