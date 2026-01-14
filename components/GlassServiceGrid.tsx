@@ -7,10 +7,20 @@ import {
   Zap,
   CheckCircle,
   Smartphone,
+  LucideIcon,
 } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 
-const services = [
+interface ServiceItem {
+  title: string;
+  desc: string;
+  features: string[];
+  icon: LucideIcon;
+  image?: string;
+}
+
+const services: ServiceItem[] = [
   {
     title: "Windshield Chip Repair",
     desc: "Fast, invisible repairs for stone chips. Prevents spreading and restores structural integrity.",
@@ -52,6 +62,82 @@ const services = [
   },
 ];
 
+function ZoomingServiceCard({ service }: { service: ServiceItem }) {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"],
+  });
+
+  // Zoom in as it enters, stay full size in middle, zoom out as it leaves
+  const scale = useTransform(
+    scrollYProgress,
+    [0, 0.35, 0.65, 1],
+    [0.85, 1, 1, 0.9]
+  );
+  const opacity = useTransform(
+    scrollYProgress,
+    [0, 0.25, 0.75, 1],
+    [0, 1, 1, 0]
+  );
+  const y = useTransform(scrollYProgress, [0, 0.35, 0.65, 1], [100, 0, 0, -50]);
+
+  return (
+    <motion.div
+      ref={containerRef}
+      style={{ scale, opacity, y }}
+      className="group relative bg-white rounded-[2rem] md:rounded-[2.5rem] p-3 md:p-4 shadow-xl shadow-blue-900/5 border border-white hover:shadow-2xl hover:shadow-blue-500/10 transition-all duration-500"
+    >
+      <div className="flex flex-col md:flex-row">
+        {/* Content Side (Left - 45%) */}
+        <div className="w-full md:w-[45%] p-6 md:p-12 flex flex-col justify-center">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 text-blue-600 w-fit mb-4 md:mb-6">
+            <service.icon className="w-4 h-4" />
+            <span className="text-xs font-bold uppercase tracking-wider">
+              Premium Service
+            </span>
+          </div>
+
+          <h3 className="text-2xl md:text-4xl font-black text-slate-800 mb-4 md:mb-6 group-hover:text-blue-600 transition-colors">
+            {service.title}
+          </h3>
+
+          <p className="text-base md:text-lg text-slate-600 mb-6 md:mb-8 leading-relaxed max-w-xl">
+            {service.desc}
+          </p>
+
+          <div className="grid grid-cols-1 gap-3 md:gap-4">
+            {service.features.map((feature: string, fIdx: number) => (
+              <div
+                key={fIdx}
+                className="flex items-center text-sm font-semibold text-slate-600"
+              >
+                <div className="w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center mr-3 text-blue-500 group-hover:scale-110 transition-transform">
+                  <CheckCircle className="w-4 h-4" />
+                </div>
+                {feature}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Image Side (Right - 55%) */}
+        <div className="w-full md:w-[55%] flex">
+          <div className="relative w-full aspect-[4/3] md:aspect-auto md:min-h-full rounded-[1.5rem] md:rounded-[2rem] overflow-hidden m-2 md:m-0">
+            <div className="absolute inset-0 bg-blue-600/10 mix-blend-multiply z-10 group-hover:bg-transparent transition-all duration-500" />
+            <img
+              src={service.image}
+              alt={service.title}
+              className="w-full h-full object-cover transform scale-100 group-hover:scale-110 transition-transform duration-700 ease-in-out"
+            />
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
 export default function GlassServiceGrid() {
   return (
     <section id="services" className="py-20 relative z-10">
@@ -71,7 +157,7 @@ export default function GlassServiceGrid() {
 
           {/* Mobile-friendly decorative elements */}
           <div className="flex items-center justify-center w-full">
-            {/* Left Side Cracks - Hidden on mobile, visible on tablet+ */}
+            {/* Left Side Cracks */}
             <div className="hidden lg:block w-32 h-20 opacity-60">
               <svg
                 width="100%"
@@ -79,7 +165,6 @@ export default function GlassServiceGrid() {
                 viewBox="0 0 200 100"
                 className="overflow-visible"
               >
-                {/* Main branch moving left */}
                 <motion.path
                   d="M 200 50 L 160 45 L 130 65 L 90 40 L 50 55 L 10 35"
                   fill="transparent"
@@ -95,49 +180,17 @@ export default function GlassServiceGrid() {
                     repeatDelay: 0.5,
                   }}
                 />
-                {/* Upper sub-branch */}
-                <motion.path
-                  d="M 160 45 L 140 20 L 100 15"
-                  fill="transparent"
-                  stroke="#60A5FA"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  initial={{ pathLength: 0, opacity: 0 }}
-                  animate={{ pathLength: [0, 1, 0], opacity: [0, 1, 0] }}
-                  transition={{
-                    duration: 5,
-                    ease: "easeInOut",
-                    repeat: Infinity,
-                    repeatDelay: 0.5,
-                  }}
-                />
-                {/* Lower sub-branch */}
-                <motion.path
-                  d="M 130 65 L 100 85 L 60 80"
-                  fill="transparent"
-                  stroke="#60A5FA"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  initial={{ pathLength: 0, opacity: 0 }}
-                  animate={{ pathLength: [0, 1, 0], opacity: [0, 1, 0] }}
-                  transition={{
-                    duration: 5,
-                    ease: "easeInOut",
-                    repeat: Infinity,
-                    repeatDelay: 0.5,
-                  }}
-                />
               </svg>
             </div>
 
-            {/* Mobile decorative dots */}
+            {/* Mobile dots */}
             <div className="flex lg:hidden items-center gap-2">
               <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
               <div className="w-2 h-2 bg-blue-300 rounded-full animate-pulse delay-75"></div>
               <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse delay-150"></div>
             </div>
 
-            {/* Right Side Cracks - Hidden on mobile, visible on tablet+ */}
+            {/* Right Side Cracks */}
             <div className="hidden lg:block w-32 h-20 opacity-60">
               <svg
                 width="100%"
@@ -145,7 +198,6 @@ export default function GlassServiceGrid() {
                 viewBox="0 0 200 100"
                 className="overflow-visible"
               >
-                {/* Main branch moving right */}
                 <motion.path
                   d="M 0 50 L 40 45 L 70 65 L 110 40 L 150 55 L 190 35"
                   fill="transparent"
@@ -161,100 +213,15 @@ export default function GlassServiceGrid() {
                     repeatDelay: 0.5,
                   }}
                 />
-                {/* Upper sub-branch */}
-                <motion.path
-                  d="M 40 45 L 60 20 L 100 15"
-                  fill="transparent"
-                  stroke="#60A5FA"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  initial={{ pathLength: 0, opacity: 0 }}
-                  animate={{ pathLength: [0, 1, 0], opacity: [0, 1, 0] }}
-                  transition={{
-                    duration: 5,
-                    ease: "easeInOut",
-                    repeat: Infinity,
-                    repeatDelay: 0.5,
-                  }}
-                />
-                {/* Lower sub-branch */}
-                <motion.path
-                  d="M 70 65 L 100 85 L 140 80"
-                  fill="transparent"
-                  stroke="#60A5FA"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  initial={{ pathLength: 0, opacity: 0 }}
-                  animate={{ pathLength: [0, 1, 0], opacity: [0, 1, 0] }}
-                  transition={{
-                    duration: 5,
-                    ease: "easeInOut",
-                    repeat: Infinity,
-                    repeatDelay: 0.5,
-                  }}
-                />
               </svg>
             </div>
           </div>
         </div>
 
-        {/* Featured Top 3 Services - Enhanced Animation */}
+        {/* Top 3 Services with Zoom Animation */}
         <div className="flex flex-col gap-8 md:gap-12 mb-24">
           {services.slice(0, 3).map((service, idx) => (
-            <motion.div
-              key={idx}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.15 }}
-              className="group relative bg-white rounded-[2rem] md:rounded-[2.5rem] p-3 md:p-4 shadow-xl shadow-blue-900/5 border border-white hover:shadow-2xl hover:shadow-blue-500/10 transition-all duration-500"
-            >
-              <div className="flex flex-col md:flex-row">
-                {/* Content Side (Left - 40%) */}
-                <div className="w-full md:w-[45%] p-6 md:p-12 flex flex-col justify-center">
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 text-blue-600 w-fit mb-4 md:mb-6">
-                    <service.icon className="w-4 h-4" />
-                    <span className="text-xs font-bold uppercase tracking-wider">
-                      Premium Service
-                    </span>
-                  </div>
-
-                  <h3 className="text-2xl md:text-4xl font-black text-slate-800 mb-4 md:mb-6 group-hover:text-blue-600 transition-colors">
-                    {service.title}
-                  </h3>
-
-                  <p className="text-base md:text-lg text-slate-600 mb-6 md:mb-8 leading-relaxed max-w-xl">
-                    {service.desc}
-                  </p>
-
-                  <div className="grid grid-cols-1 gap-3 md:gap-4">
-                    {service.features.map((feature, fIdx) => (
-                      <div
-                        key={fIdx}
-                        className="flex items-center text-sm font-semibold text-slate-600"
-                      >
-                        <div className="w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center mr-3 text-blue-500 group-hover:scale-110 transition-transform">
-                          <CheckCircle className="w-4 h-4" />
-                        </div>
-                        {feature}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Image Side (Right - 55%) - Updated for better mobile fit */}
-                <div className="w-full md:w-[55%] flex">
-                  <div className="relative w-full aspect-[4/3] md:aspect-auto md:min-h-full rounded-[1.5rem] md:rounded-[2rem] overflow-hidden m-2 md:m-0">
-                    <div className="absolute inset-0 bg-blue-600/10 mix-blend-multiply z-10 group-hover:bg-transparent transition-all duration-500" />
-                    <img
-                      src={service.image}
-                      alt={service.title}
-                      className="w-full h-full object-cover transform scale-100 group-hover:scale-110 transition-transform duration-700 ease-in-out"
-                    />
-                  </div>
-                </div>
-              </div>
-            </motion.div>
+            <ZoomingServiceCard key={idx} service={service} />
           ))}
         </div>
 

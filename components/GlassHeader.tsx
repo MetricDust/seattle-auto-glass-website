@@ -57,12 +57,7 @@ export default function GlassHeader() {
         >
           {/* Logo - Always Visible */}
           <div className="flex items-center space-x-2 shrink-0">
-            <motion.div
-              layout
-              className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-cyan-400 flex items-center justify-center text-white font-bold text-lg"
-            >
-              S
-            </motion.div>
+            <img src="/images/logo.png" alt="Logo" className="w-12 h-12" />
             <motion.span
               layout
               className="text-lg font-bold bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent whitespace-nowrap"
