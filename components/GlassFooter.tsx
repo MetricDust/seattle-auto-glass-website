@@ -63,9 +63,7 @@ export default function GlassFooter() {
             {/* Brand */}
             <div className="space-y-6">
               <div className="flex items-center space-x-2">
-                <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-cyan-400 flex items-center justify-center text-white font-bold text-lg">
-                  S
-                </div>
+                <img src="/images/logo.png" alt="Logo" className="w-12 h-12" />
                 <span className="text-xl font-bold text-slate-800">
                   Seattle Auto Glass LLC
                 </span>
