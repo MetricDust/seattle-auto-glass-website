@@ -1,7 +1,14 @@
 "use client";
 
 import { useState, useRef } from "react";
-import { motion, useScroll, useMotionValueEvent } from "framer-motion";
+import {
+  motion,
+  useScroll,
+  useMotionValueEvent,
+  useMotionValue,
+  useSpring,
+  useTransform,
+} from "framer-motion";
 
 const steps = [
   {
@@ -45,6 +52,27 @@ export default function GlassProcessSection() {
     }
   });
 
+  // Gyroscope Effect Logic
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  const springConfig = { damping: 30, stiffness: 200 };
+  const smoothX = useSpring(mouseX, springConfig);
+  const smoothY = useSpring(mouseY, springConfig);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
+    mouseX.set(x);
+    mouseY.set(y);
+  };
+
+  const handleMouseLeave = () => {
+    mouseX.set(0);
+    mouseY.set(0);
+  };
+
   return (
     <section ref={containerRef} id="process" className="relative h-[300vh]">
       <div className="sticky top-0 min-h-screen lg:h-screen flex items-center overflow-y-auto lg:overflow-hidden py-12 lg:py-0">
@@ -52,22 +80,96 @@ export default function GlassProcessSection() {
           <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-24">
             {/* Visual Side (Left) - Stays Static */}
             <div className="w-full lg:w-1/2 flex justify-center">
-              <div className="relative w-full max-w-[280px] sm:max-w-md aspect-square lg:aspect-[3/4] group">
-                {/* Glass Container for Image */}
-                <div className="absolute inset-0 bg-white/10 backdrop-blur-2xl rounded-[2rem] lg:rounded-[3rem] border border-white/20 shadow-2xl overflow-hidden group-hover:scale-[1.02] transition-transform duration-700">
-                  <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-transparent"></div>
-                  <img
-                    src="/images/glass-layers.png"
-                    alt="Windshield Layers Diagram"
-                    className="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-opacity duration-700"
-                  />
-                  {/* Overlay "Glass" shine */}
-                  <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-white/10 to-transparent pointer-events-none"></div>
-                </div>
+              <div
+                className="relative w-full max-w-[300px] sm:max-w-md aspect-square flex items-center justify-center"
+                style={{ perspective: "1500px" }}
+                onMouseMove={handleMouseMove}
+                onMouseLeave={handleMouseLeave}
+              >
+                {/* 
+                  Refactored logic based on Angular snippet:
+                  pos.x = mapped -1 to 1
+                  pos.y = mapped 1 to -1
+                  translate3d(tx * -pos.x, ty * pos.y, tz * pos.z)
+                  rotateX(rx * pos.y) rotateY(ry * pos.x)
+                */}
 
-                {/* Floating decorative elements */}
-                <div className="absolute -top-4 -right-4 lg:-top-6 lg:-right-6 w-16 h-16 lg:w-24 lg:h-24 bg-blue-400/20 blur-3xl rounded-full"></div>
-                <div className="absolute -bottom-6 -left-6 lg:-bottom-10 lg:-left-10 w-24 h-24 lg:w-40 lg:h-40 bg-cyan-400/10 blur-3xl rounded-full"></div>
+                {/* Layer 3 - Back (Config 0: Base with Rotation) */}
+                <motion.div
+                  style={{
+                    x: useTransform(smoothX, [-0.5, 0.5], [0, 0]), // tx: 0
+                    y: useTransform(smoothY, [-0.5, 0.5], [0, 0]), // ty: 0
+                    translateZ: 0, // tz: 0
+                    rotateX: useTransform(smoothY, [-0.5, 0.5], [-25, 25]), // rx: 25 (pos.y is inverted mouse)
+                    rotateY: useTransform(smoothX, [-0.5, 0.5], [-25, 25]), // ry: 25
+                    boxShadow: useTransform([smoothX, smoothY], ([x, y]) => {
+                      const px = (x as number) * 2;
+                      const py = (y as number) * -2;
+                      return `${10 * -px}px ${10 * py}px 5px rgba(0,0,0,0.25)`;
+                    }),
+                    transformStyle: "preserve-3d",
+                  }}
+                  className="absolute inset-0 bg-white/10 backdrop-blur-2xl rounded-[2rem] lg:rounded-[3rem] border border-white/20 overflow-hidden"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-transparent"></div>
+                  <motion.img
+                    src="/images/layer3.png"
+                    alt="Back Layer"
+                    className="w-full h-full object-contain opacity-60 pointer-events-none"
+                  />
+                </motion.div>
+
+                {/* Layer 2 - Center (Config 1: Middle with Translation) */}
+                <motion.div
+                  style={{
+                    x: useTransform(smoothX, [-0.5, 0.5], [25, -25]), // tx: -25 * -pos.x
+                    y: useTransform(smoothY, [-0.5, 0.5], [25, -25]), // ty: -25 * pos.y (pos.y = -smoothY*2)
+                    translateZ: 10,
+                    transformStyle: "preserve-3d",
+                  }}
+                  className="absolute inset-0 pointer-events-none"
+                >
+                  <motion.img
+                    src="/images/layer2.png"
+                    alt="Center Layer"
+                    className="w-full h-full object-contain opacity-80"
+                  />
+                </motion.div>
+
+                {/* Layer 1 - Front (Config 2: Foreground with High Translation) */}
+                <motion.div
+                  style={{
+                    x: useTransform(smoothX, [-0.5, 0.5], [25, -25]), // tx: -25 * -pos.x
+                    y: useTransform(smoothY, [-0.5, 0.5], [25, -25]), // ty: -25 * pos.y
+                    translateZ: 40,
+                    transformStyle: "preserve-3d",
+                  }}
+                  className="absolute inset-0 pointer-events-none"
+                >
+                  <motion.img
+                    src="/images/layer1.png"
+                    alt="Front Layer"
+                    className="w-full h-full object-contain scale-105"
+                  />
+                </motion.div>
+
+                {/* Decorative depth elements tracking Layer 1 */}
+                <motion.div
+                  style={{
+                    x: useTransform(smoothX, [-0.5, 0.5], [50, -50]),
+                    y: useTransform(smoothY, [-0.5, 0.5], [50, -50]),
+                    translateZ: -50,
+                  }}
+                  className="absolute -top-12 -right-12 w-32 h-32 bg-blue-400/10 blur-3xl rounded-full"
+                ></motion.div>
+                <motion.div
+                  style={{
+                    x: useTransform(smoothX, [-0.5, 0.5], [-30, 30]),
+                    y: useTransform(smoothY, [-0.5, 0.5], [30, -30]),
+                    translateZ: -50,
+                  }}
+                  className="absolute -bottom-16 -left-16 w-48 h-48 bg-cyan-400/10 blur-3xl rounded-full"
+                ></motion.div>
               </div>
             </div>
 
