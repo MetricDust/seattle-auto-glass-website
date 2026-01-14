@@ -47,14 +47,14 @@ export default function GlassProcessSection() {
 
   return (
     <section ref={containerRef} id="process" className="relative h-[300vh]">
-      <div className="sticky top-0 h-screen flex items-center overflow-hidden">
-        <div className="container mx-auto px-4 relative z-10 h-full flex flex-col justify-center">
-          <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
+      <div className="sticky top-0 min-h-screen lg:h-screen flex items-center overflow-y-auto lg:overflow-hidden py-12 lg:py-0">
+        <div className="container mx-auto px-4 relative z-10 w-full">
+          <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-24">
             {/* Visual Side (Left) - Stays Static */}
             <div className="w-full lg:w-1/2 flex justify-center">
-              <div className="relative w-full max-w-md aspect-[3/4] group">
+              <div className="relative w-full max-w-[280px] sm:max-w-md aspect-square lg:aspect-[3/4] group">
                 {/* Glass Container for Image */}
-                <div className="absolute inset-0 bg-white/10 backdrop-blur-2xl rounded-[3rem] border border-white/20 shadow-2xl overflow-hidden group-hover:scale-[1.02] transition-transform duration-700">
+                <div className="absolute inset-0 bg-white/10 backdrop-blur-2xl rounded-[2rem] lg:rounded-[3rem] border border-white/20 shadow-2xl overflow-hidden group-hover:scale-[1.02] transition-transform duration-700">
                   <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-transparent"></div>
                   <img
                     src="/images/glass-layers.png"
@@ -66,48 +66,48 @@ export default function GlassProcessSection() {
                 </div>
 
                 {/* Floating decorative elements */}
-                <div className="absolute -top-6 -right-6 w-24 h-24 bg-blue-400/20 blur-3xl rounded-full"></div>
-                <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-cyan-400/10 blur-3xl rounded-full"></div>
+                <div className="absolute -top-4 -right-4 lg:-top-6 lg:-right-6 w-16 h-16 lg:w-24 lg:h-24 bg-blue-400/20 blur-3xl rounded-full"></div>
+                <div className="absolute -bottom-6 -left-6 lg:-bottom-10 lg:-left-10 w-24 h-24 lg:w-40 lg:h-40 bg-cyan-400/10 blur-3xl rounded-full"></div>
               </div>
             </div>
 
             {/* Content Side (Right) - Steps Update on Scroll */}
-            <div className="w-full lg:w-1/2">
+            <div className="w-full lg:w-1/2 text-center lg:text-left">
               <motion.div
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
               >
-                <span className="text-blue-600 font-extrabold tracking-widest uppercase text-sm mb-4 block">
+                <span className="text-blue-600 font-extrabold tracking-widest uppercase text-[10px] sm:text-xs mb-2 sm:mb-4 block">
                   The Science of Repair
                 </span>
-                <h2 className="text-5xl lg:text-6xl font-black text-slate-900 mb-12 tracking-tighter leading-none">
-                  Precision <br />
+                <h2 className="text-3xl sm:text-4xl lg:text-6xl font-black text-slate-900 mb-6 sm:mb-12 tracking-tighter leading-tight">
+                  Precision <br className="hidden sm:block" />
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">
                     Repair Process
                   </span>
                 </h2>
               </motion.div>
 
-              <div className="space-y-6">
+              <div className="space-y-4 sm:space-y-6">
                 {steps.map((step, idx) => {
                   const isActive = activeIndex === idx;
                   return (
                     <motion.div
                       key={idx}
                       animate={{
-                        opacity: 1,
-                        scale: isActive ? 1.02 : 1,
+                        opacity: isActive ? 1 : 0.6,
+                        scale: isActive ? 1 : 0.98,
                       }}
-                      className={`relative pl-16 py-4 rounded-2xl transition-all duration-300 ${
+                      className={`relative pl-12 sm:pl-16 py-3 sm:py-4 rounded-xl sm:rounded-2xl transition-all duration-300 ${
                         isActive
-                          ? "bg-white shadow-xl shadow-blue-500/5 border border-blue-100"
+                          ? "bg-white shadow-lg shadow-blue-500/5 border border-blue-100"
                           : "bg-transparent border border-transparent"
                       }`}
                     >
                       {/* Number Plate */}
                       <div
-                        className={`absolute left-4 top-5 w-9 h-9 rounded-lg shadow-sm flex items-center justify-center font-black text-sm transition-all ${
+                        className={`absolute left-3 sm:left-4 top-4 sm:top-5 w-7 h-7 sm:w-9 sm:h-9 rounded-lg shadow-sm flex items-center justify-center font-black text-xs sm:text-sm transition-all ${
                           isActive
                             ? "bg-blue-600 text-white scale-110"
                             : "bg-slate-100 text-slate-400"
@@ -118,7 +118,7 @@ export default function GlassProcessSection() {
 
                       <div className="w-full text-left flex items-center justify-between group cursor-default">
                         <h3
-                          className={`text-xl font-black tracking-tight transition-colors ${
+                          className={`text-lg sm:text-xl font-black tracking-tight transition-colors ${
                             isActive ? "text-blue-600" : "text-slate-400"
                           }`}
                         >
@@ -135,8 +135,8 @@ export default function GlassProcessSection() {
                         transition={{ duration: 0.3, ease: "easeInOut" }}
                         className="overflow-hidden"
                       >
-                        <div className="pt-4 pr-6">
-                          <p className="text-slate-600 leading-relaxed">
+                        <div className="pt-2 sm:pt-4 pr-4 sm:pr-6">
+                          <p className="text-sm sm:text-base text-slate-600 leading-relaxed text-left">
                             {step.description}
                           </p>
                         </div>

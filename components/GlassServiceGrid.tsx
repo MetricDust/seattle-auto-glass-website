@@ -199,7 +199,7 @@ export default function GlassServiceGrid() {
         </div>
 
         {/* Featured Top 3 Services - Enhanced Animation */}
-        <div className="flex flex-col gap-12 mb-24">
+        <div className="flex flex-col gap-8 md:gap-12 mb-24">
           {services.slice(0, 3).map((service, idx) => (
             <motion.div
               key={idx}
@@ -207,27 +207,27 @@ export default function GlassServiceGrid() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.15 }}
-              className="group relative bg-white rounded-[2.5rem] p-4 pr-4 shadow-xl shadow-blue-900/5 border border-white hover:shadow-2xl hover:shadow-blue-500/10 transition-all duration-500"
+              className="group relative bg-white rounded-[2rem] md:rounded-[2.5rem] p-3 md:p-4 shadow-xl shadow-blue-900/5 border border-white hover:shadow-2xl hover:shadow-blue-500/10 transition-all duration-500"
             >
-              <div className="flex flex-col md:flex-row h-full">
+              <div className="flex flex-col md:flex-row">
                 {/* Content Side (Left - 40%) */}
-                <div className="w-full md:w-[40%] p-8 md:p-12 flex flex-col justify-center">
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 text-blue-600 w-fit mb-6">
+                <div className="w-full md:w-[45%] p-6 md:p-12 flex flex-col justify-center">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 text-blue-600 w-fit mb-4 md:mb-6">
                     <service.icon className="w-4 h-4" />
                     <span className="text-xs font-bold uppercase tracking-wider">
                       Premium Service
                     </span>
                   </div>
 
-                  <h3 className="text-3xl md:text-4xl font-black text-slate-800 mb-6 group-hover:text-blue-600 transition-colors">
+                  <h3 className="text-2xl md:text-4xl font-black text-slate-800 mb-4 md:mb-6 group-hover:text-blue-600 transition-colors">
                     {service.title}
                   </h3>
 
-                  <p className="text-lg text-slate-600 mb-8 leading-relaxed max-w-xl">
+                  <p className="text-base md:text-lg text-slate-600 mb-6 md:mb-8 leading-relaxed max-w-xl">
                     {service.desc}
                   </p>
 
-                  <div className="grid grid-cols-1 gap-4">
+                  <div className="grid grid-cols-1 gap-3 md:gap-4">
                     {service.features.map((feature, fIdx) => (
                       <div
                         key={fIdx}
@@ -242,9 +242,9 @@ export default function GlassServiceGrid() {
                   </div>
                 </div>
 
-                {/* Image Side (Right - 60%) */}
-                <div className="w-full md:w-[60%] min-h-[300px] md:min-h-full">
-                  <div className="relative h-full w-full rounded-[2rem] overflow-hidden">
+                {/* Image Side (Right - 55%) - Updated for better mobile fit */}
+                <div className="w-full md:w-[55%] flex">
+                  <div className="relative w-full aspect-[4/3] md:aspect-auto md:min-h-full rounded-[1.5rem] md:rounded-[2rem] overflow-hidden m-2 md:m-0">
                     <div className="absolute inset-0 bg-blue-600/10 mix-blend-multiply z-10 group-hover:bg-transparent transition-all duration-500" />
                     <img
                       src={service.image}
