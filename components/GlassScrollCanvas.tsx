@@ -19,8 +19,9 @@ export default function GlassScrollCanvas({
   imageFolderPath,
 }: GlassScrollCanvasProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [isLoaded, setIsLoaded] = useState(false);
-  const imagesRef = useRef<HTMLImageElement[]>([]);
+  const [isInitialLoaded, setIsInitialLoaded] = useState(false);
+  const [loadProgress, setLoadProgress] = useState(0);
+  const imagesRef = useRef<(HTMLImageElement | null)[]>([]);
 
   // Build URLs for the frames
   const imageUrls = useMemo(() => {
@@ -32,45 +33,66 @@ export default function GlassScrollCanvas({
     return urls;
   }, [totalFrames, imageFolderPath]);
 
-  // Preload all images on mount
+  // Progressive loading logic
   useEffect(() => {
     let cancelled = false;
-    const loadedImages: HTMLImageElement[] = new Array(totalFrames);
+    const loadedImages: (HTMLImageElement | null)[] = new Array(totalFrames).fill(null);
     let loadedCount = 0;
 
-    imageUrls.forEach((src, idx) => {
-      const img = new Image();
-      img.onload = () => {
-        if (cancelled) return;
-        loadedImages[idx] = img;
-        loadedCount++;
-        if (loadedCount === totalFrames) {
-          imagesRef.current = loadedImages;
-          setIsLoaded(true);
-        }
-      };
-      img.onerror = () => {
-        console.error(`Failed to load frame: ${src}`);
-        loadedCount++;
-        if (loadedCount === totalFrames) {
-          imagesRef.current = loadedImages;
-          setIsLoaded(true);
-        }
-      };
-      img.src = src;
-    });
+    const loadSingleImage = (index: number): Promise<void> => {
+      return new Promise((resolve) => {
+        const img = new Image();
+        img.onload = () => {
+          if (cancelled) return resolve();
+          loadedImages[index] = img;
+          loadedCount++;
+          if (index === 0) setIsInitialLoaded(true);
+          setLoadProgress(Math.round((loadedCount / totalFrames) * 100));
+          resolve();
+        };
+        img.onerror = () => {
+          console.error(`Failed to load frame: ${imageUrls[index]}`);
+          loadedCount++;
+          setLoadProgress(Math.round((loadedCount / totalFrames) * 100));
+          resolve();
+        };
+        img.src = imageUrls[index];
+      });
+    };
 
+    const loadImages = async () => {
+      // 1. Load the very first frame immediately for fast display
+      await loadSingleImage(0);
+      imagesRef.current = [...loadedImages];
+
+      if (cancelled) return;
+
+      // 2. Load the rest in chunks to avoid blocking the network
+      const chunkSize = 8;
+      for (let i = 1; i < imageUrls.length; i += chunkSize) {
+        if (cancelled) break;
+        const chunk = [];
+        for (let j = i; j < i + chunkSize && j < imageUrls.length; j++) {
+          chunk.push(loadSingleImage(j));
+        }
+        await Promise.all(chunk);
+        // Periodically update the ref so current loading images are available
+        imagesRef.current = [...loadedImages];
+      }
+    };
+
+    loadImages();
     return () => {
       cancelled = true;
     };
   }, [imageUrls, totalFrames]);
 
   /**
-   * Render a frame to the canvas with object-fit: contain logic.
+   * Render a frame to the canvas with object-fit: cover logic and fallback.
    */
   const renderFrame = useCallback((progress: number) => {
     const canvas = canvasRef.current;
-    if (!canvas || !imagesRef.current.length || !isLoaded) return;
+    if (!canvas || !imagesRef.current.length || !isInitialLoaded) return;
 
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
@@ -81,19 +103,28 @@ export default function GlassScrollCanvas({
       Math.max(0, Math.floor(progress * totalFrames))
     );
 
-    const img = imagesRef.current[frameIndex];
+    // Fallback logic: if target frame isn't loaded, use first frame or closest loaded frame
+    let img = imagesRef.current[frameIndex];
+    if (!img) {
+      // Find the closest loaded frame (searching backwards is usually better for scroll feel)
+      for (let i = frameIndex; i >= 0; i--) {
+        if (imagesRef.current[i]) {
+          img = imagesRef.current[i];
+          break;
+        }
+      }
+    }
+
     if (!img) return;
 
     const dpr = window.devicePixelRatio || 1;
     const rect = canvas.getBoundingClientRect();
 
-    // Ensure canvas internal size matches display size * DPR
     if (canvas.width !== rect.width * dpr || canvas.height !== rect.height * dpr) {
       canvas.width = rect.width * dpr;
       canvas.height = rect.height * dpr;
     }
 
-    // Scale context by devicePixelRatio
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     ctx.clearRect(0, 0, rect.width, rect.height);
 
@@ -101,19 +132,14 @@ export default function GlassScrollCanvas({
     const imgRatio = img.width / img.height;
     const canvasRatio = rect.width / rect.height;
 
-    // We want 'cover' for most of the sequence, but 'contain' for the end
-    // so that all labels (Heating Glass Layer, etc.) are visible.
     const transitionStart = 0.9;
     const t = Math.max(0, (progress - transitionStart) / (1 - transitionStart));
-    const easeT = t * t * (3 - 2 * t); // Smoothstep
+    const easeT = t * t * (3 - 2 * t);
 
-    // Calculate 'cover' scale
     const scaleCover = Math.max(rect.width / img.width, rect.height / img.height);
-    // Calculate 'contain' scale
     const scaleContain = Math.min(rect.width / img.width, rect.height / img.height);
 
     // Interpolate scale - stop at 40% of the way to contain
-    // This creates the "small, thin black border" requested by the user
     const zoomLimit = 0.4;
     const scale = scaleCover + (scaleContain - scaleCover) * (easeT * zoomLimit);
 
@@ -123,7 +149,7 @@ export default function GlassScrollCanvas({
     const offsetY = (rect.height - drawHeight) / 2;
 
     ctx.drawImage(img, offsetX, offsetY, drawWidth, drawHeight);
-  }, [isLoaded, totalFrames]);
+  }, [isInitialLoaded, totalFrames]);
 
   // Subscribe to scroll progress changes
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
@@ -132,28 +158,44 @@ export default function GlassScrollCanvas({
 
   // Initial draw and handle orientation/resize
   useEffect(() => {
-    if (isLoaded) {
+    if (isInitialLoaded) {
       renderFrame(scrollYProgress.get());
     }
 
     const handleResize = () => renderFrame(scrollYProgress.get());
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
-  }, [isLoaded, renderFrame, scrollYProgress]);
+  }, [isInitialLoaded, renderFrame, scrollYProgress]);
 
-  if (!isLoaded) {
+  if (!isInitialLoaded) {
     return (
       <div className="flex flex-col items-center justify-center w-full h-full bg-slate-900 text-white font-light tracking-widest uppercase">
-        Loading Visuals...
+        <div className="flex flex-col items-center gap-4">
+          <span>Synchronizing Visuals...</span>
+          <div className="w-48 h-1 bg-white/10 rounded-full overflow-hidden">
+            <div
+              className="h-full bg-blue-500 transition-all duration-300"
+              style={{ width: `${loadProgress}%` }}
+            />
+          </div>
+        </div>
       </div>
     );
   }
 
   return (
-    <canvas
-      ref={canvasRef}
-      className="w-full h-full block touch-none"
-      style={{ background: "black" }}
-    />
+    <>
+      <canvas
+        ref={canvasRef}
+        className="w-full h-full block touch-none"
+        style={{ background: "black" }}
+      />
+      {/* Background loading progress indicator (subtle) */}
+      {loadProgress < 100 && (
+        <div className="absolute bottom-4 right-4 text-[10px] text-white/30 tracking-widest uppercase pointer-events-none">
+          Optimizing {loadProgress}%
+        </div>
+      )}
+    </>
   );
 }
