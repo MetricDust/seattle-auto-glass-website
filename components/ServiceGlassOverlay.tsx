@@ -57,7 +57,7 @@ export default function ServiceGlassOverlay({
                 </span>
               </div>
 
-              <h1 className="text-5xl md:text-7xl lg:text-8xl font-black text-white mb-6 leading-[0.9] tracking-tighter drop-shadow-2xl">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-6 leading-[0.9] tracking-tighter drop-shadow-2xl">
                 QUEEN ANNE&apos;S <br />
                 <span className="text-transparent bg-clip-text bg-[linear-gradient(to_right,#60a5fa,#67e8f9,#ffffff,#67e8f9,#60a5fa)] bg-[length:200%_auto] animate-shine">
                   WINDSHIELD

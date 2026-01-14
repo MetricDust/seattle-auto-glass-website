@@ -34,12 +34,12 @@ export default function Home() {
 
       {/* Main Scroll Section */}
       <section ref={containerRef} className="h-[500vh] relative z-0">
-        <div className="sticky top-0 h-screen w-full overflow-hidden">
+        <div className="sticky top-[80px] h-[calc(100vh-80px)] w-full overflow-hidden">
           <div className="absolute inset-0 z-0">
             <GlassScrollCanvas
               scrollYProgress={scrollYProgress}
               totalFrames={240}
-              imageFolderPath="/frames"
+              imageFolderPath="/3dviewframes"
             />
           </div>
           <ServiceGlassOverlay scrollYProgress={scrollYProgress} />
