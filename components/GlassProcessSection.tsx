@@ -100,7 +100,7 @@ export default function GlassProcessSection() {
                     x: useTransform(smoothX, [-0.5, 0.5], [0, 0]), // tx: 0
                     y: useTransform(smoothY, [-0.5, 0.5], [0, 0]), // ty: 0
                     translateZ: 0, // tz: 0
-                    rotateX: useTransform(smoothY, [-0.5, 0.5], [-25, 25]), // rx: 25 (pos.y is inverted mouse)
+                    rotateX: useTransform(smoothY, [-0.5, 0.5], [-25, 25]), // rx: 25
                     rotateY: useTransform(smoothX, [-0.5, 0.5], [-25, 25]), // ry: 25
                     boxShadow: useTransform([smoothX, smoothY], ([x, y]) => {
                       const px = (x as number) * 2;
@@ -119,24 +119,7 @@ export default function GlassProcessSection() {
                   />
                 </motion.div>
 
-                {/* Layer 2 - Center (Config 1: Middle with Translation) */}
-                <motion.div
-                  style={{
-                    x: useTransform(smoothX, [-0.5, 0.5], [25, -25]), // tx: -25 * -pos.x
-                    y: useTransform(smoothY, [-0.5, 0.5], [25, -25]), // ty: -25 * pos.y (pos.y = -smoothY*2)
-                    translateZ: 10,
-                    transformStyle: "preserve-3d",
-                  }}
-                  className="absolute inset-0 pointer-events-none"
-                >
-                  <motion.img
-                    src="/images/layer2.png"
-                    alt="Center Layer"
-                    className="w-full h-full object-contain opacity-80"
-                  />
-                </motion.div>
-
-                {/* Layer 1 - Front (Config 2: Foreground with High Translation) */}
+                {/* Layer 2 - Front (Config 1: Floating with Translation) */}
                 <motion.div
                   style={{
                     x: useTransform(smoothX, [-0.5, 0.5], [25, -25]), // tx: -25 * -pos.x
@@ -147,28 +130,20 @@ export default function GlassProcessSection() {
                   className="absolute inset-0 pointer-events-none"
                 >
                   <motion.img
-                    src="/images/layer1.png"
-                    alt="Front Layer"
+                    src="/images/layer2.png"
+                    alt="Floating Layer"
                     className="w-full h-full object-contain scale-105"
                   />
                 </motion.div>
 
-                {/* Decorative depth elements tracking Layer 1 */}
+                {/* Decorative depth elements tracking the stack */}
                 <motion.div
                   style={{
-                    x: useTransform(smoothX, [-0.5, 0.5], [50, -50]),
-                    y: useTransform(smoothY, [-0.5, 0.5], [50, -50]),
+                    x: useTransform(smoothX, [-0.5, 0.5], [40, -40]),
+                    y: useTransform(smoothY, [-0.5, 0.5], [40, -40]),
                     translateZ: -50,
                   }}
                   className="absolute -top-12 -right-12 w-32 h-32 bg-blue-400/10 blur-3xl rounded-full"
-                ></motion.div>
-                <motion.div
-                  style={{
-                    x: useTransform(smoothX, [-0.5, 0.5], [-30, 30]),
-                    y: useTransform(smoothY, [-0.5, 0.5], [30, -30]),
-                    translateZ: -50,
-                  }}
-                  className="absolute -bottom-16 -left-16 w-48 h-48 bg-cyan-400/10 blur-3xl rounded-full"
                 ></motion.div>
               </div>
             </div>
