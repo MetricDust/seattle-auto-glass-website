@@ -55,135 +55,146 @@ const services = [
 export default function GlassServiceGrid() {
   return (
     <section id="services" className="py-20 relative z-10">
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-center gap-2 md:gap-12 mb-16 relative">
-          {/* Left Side Cracks */}
-          <div className="hidden md:block w-48 h-32 opacity-80">
-            <svg
-              width="100%"
-              height="100%"
-              viewBox="0 0 200 100"
-              className="overflow-visible"
-            >
-              {/* Main branch moving left */}
-              <motion.path
-                d="M 200 50 L 160 45 L 130 65 L 90 40 L 50 55 L 10 35"
-                fill="transparent"
-                stroke="#60A5FA"
-                strokeWidth="2"
-                strokeLinecap="round"
-                initial={{ pathLength: 0, opacity: 0 }}
-                animate={{ pathLength: [0, 1, 0], opacity: [0, 1, 0] }}
-                transition={{
-                  duration: 5,
-                  ease: "easeInOut",
-                  repeat: Infinity,
-                  repeatDelay: 0.5,
-                }}
-              />
-              {/* Upper sub-branch */}
-              <motion.path
-                d="M 160 45 L 140 20 L 100 15"
-                fill="transparent"
-                stroke="#60A5FA"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                initial={{ pathLength: 0, opacity: 0 }}
-                animate={{ pathLength: [0, 1, 0], opacity: [0, 1, 0] }}
-                transition={{
-                  duration: 5,
-                  ease: "easeInOut",
-                  repeat: Infinity,
-                  repeatDelay: 0.5,
-                }}
-              />
-              {/* Lower sub-branch */}
-              <motion.path
-                d="M 130 65 L 100 85 L 60 80"
-                fill="transparent"
-                stroke="#60A5FA"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                initial={{ pathLength: 0, opacity: 0 }}
-                animate={{ pathLength: [0, 1, 0], opacity: [0, 1, 0] }}
-                transition={{
-                  duration: 5,
-                  ease: "easeInOut",
-                  repeat: Infinity,
-                  repeatDelay: 0.5,
-                }}
-              />
-            </svg>
-          </div>
-
+      <div className="container mx-auto px-2 sm:px-4">
+        <div className="flex flex-col items-center gap-6 mb-16 relative">
           {/* Center Text */}
-          <div className="text-center max-w-2xl relative z-10 shrink-0">
-            <h2 className="text-4xl font-bold mb-4 text-slate-800 mt-10">
+          <div className="text-center max-w-2xl relative z-10 px-2">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-slate-800 leading-tight px-4 py-8">
               Premium Auto Glass Services
             </h2>
-            <p className="text-lg text-slate-600">
+            <p className="text-base sm:text-lg text-slate-600 leading-relaxed px-0">
               Combining expert craftsmanship with modern technology to keep you
+              <br className="hidden sm:block" />
               safe on the road.
             </p>
           </div>
 
-          {/* Right Side Cracks */}
-          <div className="hidden md:block w-48 h-32 opacity-80">
-            <svg
-              width="100%"
-              height="100%"
-              viewBox="0 0 200 100"
-              className="overflow-visible"
-            >
-              {/* Main branch moving right */}
-              <motion.path
-                d="M 0 50 L 40 45 L 70 65 L 110 40 L 150 55 L 190 35"
-                fill="transparent"
-                stroke="#60A5FA"
-                strokeWidth="2"
-                strokeLinecap="round"
-                initial={{ pathLength: 0, opacity: 0 }}
-                animate={{ pathLength: [0, 1, 0], opacity: [0, 1, 0] }}
-                transition={{
-                  duration: 5,
-                  ease: "easeInOut",
-                  repeat: Infinity,
-                  repeatDelay: 0.5,
-                }}
-              />
-              {/* Upper sub-branch */}
-              <motion.path
-                d="M 40 45 L 60 20 L 100 15"
-                fill="transparent"
-                stroke="#60A5FA"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                initial={{ pathLength: 0, opacity: 0 }}
-                animate={{ pathLength: [0, 1, 0], opacity: [0, 1, 0] }}
-                transition={{
-                  duration: 5,
-                  ease: "easeInOut",
-                  repeat: Infinity,
-                  repeatDelay: 0.5,
-                }}
-              />
-              {/* Lower sub-branch */}
-              <motion.path
-                d="M 70 65 L 100 85 L 140 80"
-                fill="transparent"
-                stroke="#60A5FA"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                initial={{ pathLength: 0, opacity: 0 }}
-                animate={{ pathLength: [0, 1, 0], opacity: [0, 1, 0] }}
-                transition={{
-                  duration: 5,
-                  ease: "easeInOut",
-                  repeat: Infinity,
-                  repeatDelay: 0.5,
-                }}
-              />
-            </svg>
+          {/* Mobile-friendly decorative elements */}
+          <div className="flex items-center justify-center w-full">
+            {/* Left Side Cracks - Hidden on mobile, visible on tablet+ */}
+            <div className="hidden lg:block w-32 h-20 opacity-60">
+              <svg
+                width="100%"
+                height="100%"
+                viewBox="0 0 200 100"
+                className="overflow-visible"
+              >
+                {/* Main branch moving left */}
+                <motion.path
+                  d="M 200 50 L 160 45 L 130 65 L 90 40 L 50 55 L 10 35"
+                  fill="transparent"
+                  stroke="#60A5FA"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  initial={{ pathLength: 0, opacity: 0 }}
+                  animate={{ pathLength: [0, 1, 0], opacity: [0, 1, 0] }}
+                  transition={{
+                    duration: 5,
+                    ease: "easeInOut",
+                    repeat: Infinity,
+                    repeatDelay: 0.5,
+                  }}
+                />
+                {/* Upper sub-branch */}
+                <motion.path
+                  d="M 160 45 L 140 20 L 100 15"
+                  fill="transparent"
+                  stroke="#60A5FA"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  initial={{ pathLength: 0, opacity: 0 }}
+                  animate={{ pathLength: [0, 1, 0], opacity: [0, 1, 0] }}
+                  transition={{
+                    duration: 5,
+                    ease: "easeInOut",
+                    repeat: Infinity,
+                    repeatDelay: 0.5,
+                  }}
+                />
+                {/* Lower sub-branch */}
+                <motion.path
+                  d="M 130 65 L 100 85 L 60 80"
+                  fill="transparent"
+                  stroke="#60A5FA"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  initial={{ pathLength: 0, opacity: 0 }}
+                  animate={{ pathLength: [0, 1, 0], opacity: [0, 1, 0] }}
+                  transition={{
+                    duration: 5,
+                    ease: "easeInOut",
+                    repeat: Infinity,
+                    repeatDelay: 0.5,
+                  }}
+                />
+              </svg>
+            </div>
+
+            {/* Mobile decorative dots */}
+            <div className="flex lg:hidden items-center gap-2">
+              <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
+              <div className="w-2 h-2 bg-blue-300 rounded-full animate-pulse delay-75"></div>
+              <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse delay-150"></div>
+            </div>
+
+            {/* Right Side Cracks - Hidden on mobile, visible on tablet+ */}
+            <div className="hidden lg:block w-32 h-20 opacity-60">
+              <svg
+                width="100%"
+                height="100%"
+                viewBox="0 0 200 100"
+                className="overflow-visible"
+              >
+                {/* Main branch moving right */}
+                <motion.path
+                  d="M 0 50 L 40 45 L 70 65 L 110 40 L 150 55 L 190 35"
+                  fill="transparent"
+                  stroke="#60A5FA"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  initial={{ pathLength: 0, opacity: 0 }}
+                  animate={{ pathLength: [0, 1, 0], opacity: [0, 1, 0] }}
+                  transition={{
+                    duration: 5,
+                    ease: "easeInOut",
+                    repeat: Infinity,
+                    repeatDelay: 0.5,
+                  }}
+                />
+                {/* Upper sub-branch */}
+                <motion.path
+                  d="M 40 45 L 60 20 L 100 15"
+                  fill="transparent"
+                  stroke="#60A5FA"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  initial={{ pathLength: 0, opacity: 0 }}
+                  animate={{ pathLength: [0, 1, 0], opacity: [0, 1, 0] }}
+                  transition={{
+                    duration: 5,
+                    ease: "easeInOut",
+                    repeat: Infinity,
+                    repeatDelay: 0.5,
+                  }}
+                />
+                {/* Lower sub-branch */}
+                <motion.path
+                  d="M 70 65 L 100 85 L 140 80"
+                  fill="transparent"
+                  stroke="#60A5FA"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  initial={{ pathLength: 0, opacity: 0 }}
+                  animate={{ pathLength: [0, 1, 0], opacity: [0, 1, 0] }}
+                  transition={{
+                    duration: 5,
+                    ease: "easeInOut",
+                    repeat: Infinity,
+                    repeatDelay: 0.5,
+                  }}
+                />
+              </svg>
+            </div>
           </div>
         </div>
 
