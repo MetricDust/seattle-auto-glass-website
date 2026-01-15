@@ -133,7 +133,7 @@ export default function GlassFooter() {
                 </li>
                 <li className="flex justify-between text-red-500 font-bold">
                   <span>Emergency</span>
-                  <span>24/7 Available</span>
+                  <span>Available 24/7 </span>
                 </li>
               </ul>
             </div>

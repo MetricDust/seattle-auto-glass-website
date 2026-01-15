@@ -43,6 +43,11 @@ h6 {
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
   }
 
+  .glass-panel-red {
+    @apply bg-red-50/60 backdrop-blur-xl border border-red-200/40;
+    box-shadow: 0 8px 32px 0 rgba(220, 38, 38, 0.25);
+  }
+
   .glass-card {
     @apply bg-white/40 backdrop-blur-lg border border-white/40 shadow-lg transition-all duration-300 hover:bg-white/60 hover:border-white/60 hover:shadow-xl hover:-translate-y-1;
   }
