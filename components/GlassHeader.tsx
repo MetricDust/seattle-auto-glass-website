@@ -71,17 +71,24 @@ export default function GlassHeader() {
             animate={{ opacity: isExpanded ? 1 : 0 }}
             transition={{ duration: 0.3, delay: 0.2 }}
             className={clsx(
-              "hidden md:flex items-center space-x-8",
+              "hidden md:flex items-center space-x-6",
               !isExpanded && "pointer-events-none absolute opacity-0"
             )}
           >
-            {["Services", "Process", "Reviews", "Contact"].map((item) => (
+            {[
+              { name: "Home", href: "/" },
+              { name: "Process", href: "/process" },
+              { name: "Costs", href: "/costs" },
+              { name: "Insurance", href: "/insurance" },
+              { name: "FAQ", href: "/faq" },
+              { name: "Contact", href: "/contact" }
+            ].map((item) => (
               <a
-                key={item}
-                href={`#${item.toLowerCase()}`}
+                key={item.name}
+                href={item.href}
                 className="text-sm font-medium text-slate-700 hover:text-blue-600 transition-colors relative group whitespace-nowrap"
               >
-                {item}
+                {item.name}
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-500 transition-all group-hover:w-full" />
               </a>
             ))}
@@ -128,14 +135,21 @@ export default function GlassHeader() {
             className="absolute top-full left-0 right-0 p-4 md:hidden"
           >
             <div className="glass-panel rounded-2xl p-4 flex flex-col space-y-4 mx-4">
-              {["Services", "Process", "Reviews", "Contact"].map((item) => (
+              {[
+                { name: "Home", href: "/" },
+                { name: "Process", href: "/process" },
+                { name: "Costs", href: "/costs" },
+                { name: "Insurance", href: "/insurance" },
+                { name: "FAQ", href: "/faq" },
+                { name: "Contact", href: "/contact" }
+              ].map((item) => (
                 <a
-                  key={item}
-                  href={`#${item.toLowerCase()}`}
+                  key={item.name}
+                  href={item.href}
                   className="text-lg font-medium text-slate-700 py-2 px-4 hover:bg-white/20 rounded-xl transition-colors"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
-                  {item}
+                  {item.name}
                 </a>
               ))}
               <a
