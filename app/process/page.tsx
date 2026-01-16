@@ -1,8 +1,10 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { Shield, Wrench, Sparkles } from "lucide-react";
 import dynamic from "next/dynamic";
+import GlassScrollCanvas from "../../components/GlassScrollCanvas";
 
 const GlassHeader = dynamic(() => import("../../components/GlassHeader"), {
   loading: () => <div className="h-16 bg-white" />,
@@ -31,6 +33,13 @@ const processSteps = [
 ];
 
 export default function ProcessPage() {
+  const scrollSectionRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: scrollSectionRef,
+    offset: ["start start", "end end"],
+  });
+  const reversedScroll = useTransform(scrollYProgress, (value) => 1 - value);
+
   return (
     <>
       <GlassHeader />
@@ -58,46 +67,45 @@ export default function ProcessPage() {
           </p>
         </motion.div>
 
-        {/* Process Steps */}
-        <div className="space-y-12 mb-20">
-          {processSteps.map((step, idx) => (
-            <motion.div
-              key={idx}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: idx * 0.1 }}
-              viewport={{ once: true, margin: "-100px" }}
-              className={`flex flex-col ${idx % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center gap-12`}
-            >
-              {/* Icon Side */}
-              <div className="w-full lg:w-1/3 flex justify-center">
-                <div className="relative">
-                  <div className="w-32 h-32 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-3xl flex items-center justify-center shadow-2xl">
-                    <step.icon className="w-16 h-16 text-white" />
-                  </div>
-                  <div className="absolute -top-4 -right-4 w-24 h-24 bg-blue-400/20 blur-3xl rounded-full"></div>
-                </div>
+        {/* Process Steps + Scroll Canvas */}
+        <section ref={scrollSectionRef} className="mb-20">
+          <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-10 lg:gap-16 items-start">
+            <div className="relative">
+              <div className="sticky top-28 h-[70vh] rounded-[2.5rem] overflow-hidden bg-slate-950 shadow-2xl shadow-blue-500/20 border border-white/10">
+                <GlassScrollCanvas
+                  scrollYProgress={reversedScroll}
+                  totalFrames={91}
+                  startFrame={40}
+                  imageFolderPath="/Transitionframesv2"
+                />
               </div>
-
-              {/* Content Side */}
-              <div className="w-full lg:w-2/3">
-                <div className="bg-white rounded-3xl p-8 shadow-xl shadow-blue-500/5 border border-white/50">
-                  <h2 className="text-3xl font-black text-slate-900 mb-4">
-                    {step.title}
-                  </h2>
-                  <p className="text-lg text-slate-600 mb-6 leading-relaxed">
+            </div>
+            <div className="lg:sticky top-28 space-y-4">
+              {processSteps.map((step, idx) => (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: idx * 0.1 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  className="bg-white rounded-2xl p-5 shadow-lg shadow-blue-500/5 border border-white/50"
+                >
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center">
+                      <step.icon className="w-5 h-5 text-white" />
+                    </div>
+                    <h2 className="text-xl font-black text-slate-900">
+                      {step.title}
+                    </h2>
+                  </div>
+                  <p className="text-sm text-slate-600 leading-relaxed">
                     {step.description}
                   </p>
-                  <div className="bg-blue-50 rounded-2xl p-6">
-                    <p className="text-slate-700 leading-relaxed">
-                      {step.details}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
 
         {/* When to Repair Section */}
         <motion.div

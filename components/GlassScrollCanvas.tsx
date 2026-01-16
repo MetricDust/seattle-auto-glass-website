@@ -6,6 +6,8 @@ export interface GlassScrollCanvasProps {
   scrollYProgress: MotionValue<number>;
   /** Total number of frames in the animation */
   totalFrames: number;
+  /** Optional starting frame index (1-based) */
+  startFrame?: number;
   /** Public folder path where frame images are stored */
   imageFolderPath: string;
 }
@@ -16,6 +18,7 @@ export interface GlassScrollCanvasProps {
 export default function GlassScrollCanvas({
   scrollYProgress,
   totalFrames,
+  startFrame = 1,
   imageFolderPath,
 }: GlassScrollCanvasProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -26,12 +29,13 @@ export default function GlassScrollCanvas({
   // Build URLs for the frames
   const imageUrls = useMemo(() => {
     const urls: string[] = [];
-    for (let i = 1; i <= totalFrames; i++) {
-      const paddedIndex = i.toString().padStart(3, "0");
+    for (let i = 0; i < totalFrames; i++) {
+      const frameIndex = startFrame + i;
+      const paddedIndex = frameIndex.toString().padStart(3, "0");
       urls.push(`${imageFolderPath}/ezgif-frame-${paddedIndex}.jpg`);
     }
     return urls;
-  }, [totalFrames, imageFolderPath]);
+  }, [totalFrames, imageFolderPath, startFrame]);
 
   // Progressive loading logic
   useEffect(() => {

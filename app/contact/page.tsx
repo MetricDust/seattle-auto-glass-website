@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { Phone, Mail, MapPin, Clock, MessageSquare } from "lucide-react";
 import dynamic from "next/dynamic";
@@ -40,6 +41,67 @@ const contactInfo = [
 
 
 export default function ContactPage() {
+  const [formData, setFormData] = useState({
+    name: "",
+    phone: "",
+    email: "",
+    service: "",
+    message: "",
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [statusMessage, setStatusMessage] = useState<string | null>(null);
+
+  const handleChange = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => {
+    const { name, value } = event.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (isSubmitting) return;
+
+    setIsSubmitting(true);
+    setStatusMessage(null);
+
+    try {
+      const response = await fetch(
+        "https://zs6q9all5l.execute-api.us-east-1.amazonaws.com/prod/seattle_auto_glass_contact_service/contactus",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name: formData.name,
+            phone: formData.phone,
+            email: formData.email,
+            service: formData.service,
+            message: formData.message,
+          }),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Contact request failed.");
+      }
+
+      setStatusMessage("Thanks! We received your message and will reach out soon.");
+      setFormData({
+        name: "",
+        phone: "",
+        email: "",
+        service: "",
+        message: "",
+      });
+    } catch (error) {
+      setStatusMessage("Sorry, we couldn't send your message. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <>
       <GlassHeader />
@@ -109,22 +171,30 @@ export default function ContactPage() {
               <h2 className="text-3xl font-black text-slate-900 mb-8 text-center">
                 Send Us a Message
               </h2>
-              <form className="max-w-2xl mx-auto space-y-6">
+              <form className="max-w-2xl mx-auto space-y-6" onSubmit={handleSubmit}>
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
                     <label className="block text-sm font-medium text-slate-700 mb-2">Name</label>
                     <input
                       type="text"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
                       className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all"
                       placeholder="Your name"
+                      required
                     />
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-slate-700 mb-2">Phone</label>
                     <input
                       type="tel"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleChange}
                       className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all"
                       placeholder="(425) 000-0000"
+                      required
                     />
                   </div>
                 </div>
@@ -132,13 +202,22 @@ export default function ContactPage() {
                   <label className="block text-sm font-medium text-slate-700 mb-2">Email</label>
                   <input
                     type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
                     className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all"
                     placeholder="your@email.com"
+                    required
                   />
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-slate-700 mb-2">Service Needed</label>
-                  <select className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all">
+                  <select
+                    className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all"
+                    name="service"
+                    value={formData.service}
+                    onChange={handleChange}
+                  >
                     <option value="">Select a service</option>
                     <option value="Windshield Chip Repair">Windshield Chip Repair</option>
                     <option value="Windshield Replacement">Windshield Replacement</option>
@@ -151,16 +230,23 @@ export default function ContactPage() {
                   <label className="block text-sm font-medium text-slate-700 mb-2">Message</label>
                   <textarea
                     rows={4}
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange}
                     className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all resize-none"
                     placeholder="Tell us about your auto glass needs..."
                   />
                 </div>
+                {statusMessage && (
+                  <p className="text-sm text-slate-600 text-center">{statusMessage}</p>
+                )}
                 <div className="text-center">
                   <button
                     type="submit"
-                    className="px-8 py-4 bg-gradient-to-r from-blue-600 to-cyan-500 text-white rounded-full font-semibold hover:scale-105 transition-transform shadow-lg"
+                    className="px-8 py-4 bg-gradient-to-r from-blue-600 to-cyan-500 text-white rounded-full font-semibold hover:scale-105 transition-transform shadow-lg disabled:opacity-60 disabled:hover:scale-100"
+                    disabled={isSubmitting}
                   >
-                    Send Message
+                    {isSubmitting ? "Sending..." : "Send Message"}
                   </button>
                 </div>
               </form>
