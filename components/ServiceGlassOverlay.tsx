@@ -50,15 +50,8 @@ export default function ServiceGlassOverlay({
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              <div className="flex items-center gap-3 mb-4">
-                <div className="h-[2px] w-12 bg-blue-500"></div>
-                <span className="text-blue-400 font-bold tracking-widest uppercase text-sm">
-                  Seattle&apos;s Finest
-                </span>
-              </div>
-
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-6 leading-[0.9] tracking-tighter drop-shadow-2xl">
-                QUEEN ANNE&apos;S <br />
+                SEATTLE&apos;S FINEST <br />
                 <span className="text-transparent bg-clip-text bg-[linear-gradient(to_right,#60a5fa,#67e8f9,#ffffff,#67e8f9,#60a5fa)] bg-[length:200%_auto] animate-shine">
                   WINDSHIELD
                 </span>{" "}

@@ -8,7 +8,7 @@ const testimonials = [
     name: "Sarah Mitchell",
     role: "Tesla Model Y Owner",
     content:
-      "The mobile service was a lifesaver. They came to my office and replaced the windshield in under an hour. The glass quality looks identical to the original.",
+      "The mobile service was a lifesaver. They came to my office and repaired the chip in under an hour. The repair quality looks invisible and perfect.",
     rating: 5,
   },
   {
@@ -22,7 +22,7 @@ const testimonials = [
     name: "Emily Chen",
     role: "BMW X5 Owner",
     content:
-      "I was worried about the HUD and sensors, but their calibration was perfect. Everything works exactly as it did before the crack.",
+      "I was worried about the chip spreading, but their repair was perfect. You can't even see where the damage was. Everything looks exactly as it did before.",
     rating: 5,
   },
 ];

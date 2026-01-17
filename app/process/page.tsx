@@ -15,20 +15,20 @@ const processSteps = [
   {
     icon: Shield,
     title: "Initial Assessment",
-    description: "Your auto glass expert starts with an eagle-eyed inspection of the damage. They're not just looking at size; they assess depth and location to ensure repairs won't compromise your ride's structural integrity.",
-    details: "Think of them as doctors for your car – no one wants surgery without a proper diagnosis. A clean surface is critical to success here, so dirt and moisture are removed before any real action occurs. It's like prepping for paint – skip this step, and you'll be sorry later."
+    description: "Your auto glass expert starts with an eagle-eyed inspection of the damage. They're not just looking at size; they assess depth and location to ensure repairs won't compromise your ride's structural integrity. Think of them as doctors for your car – no one wants surgery without a proper diagnosis.",
+    details: "A clean surface is critical to success here, so dirt and moisture are removed before any real action occurs. It's like prepping for paint – skip this step, and you'll be sorry later."
   },
   {
     icon: Wrench,
     title: "The Resin Application",
-    description: "After preparing the area, technician uses high-quality resin designed for cars to restore strength and clarity.",
-    details: "They inject it into the chip with precise equipment, ensuring no spills or gaps, like filling fine cracks in delicate china. Curing under UV light hardens resin quickly. Patience might be virtuous elsewhere, but not in windshield repair land where time is money."
+    description: "After preparing the area, the technician uses high-quality resin designed for cars to restore strength and clarity. They inject it into the chip with precise equipment, ensuring no spills or gaps, like filling fine cracks in delicate china.",
+    details: "Curing under UV light hardens resin quickly. Patience might be virtuous elsewhere, but not in windshield repair land where time is money."
   },
   {
     icon: Sparkles,
     title: "Precision Polishing",
-    description: "Last up? A meticulous polish that ensures nothing is left behind but smooth sailing.",
-    details: "No bumps or rough patches are allowed when striving for invisibility post-repair. This finishing touch returns that out-of-showroom shine while guaranteeing safety since even minor imperfections can lead to significant visibility issues."
+    description: "Last up? A meticulous polish that ensures nothing is left behind but smooth sailing. No bumps or rough patches are allowed when striving for invisibility post-repair.",
+    details: "This finishing touch returns that out-of-showroom shine while guaranteeing safety since even minor imperfections can lead to significant visibility issues."
   }
 ];
 
@@ -43,8 +43,14 @@ export default function ProcessPage() {
   return (
     <>
       <GlassHeader />
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-cyan-50 pt-20">
-      <div className="container mx-auto px-4 py-16">
+      <div className="min-h-screen bg-gradient-to-br from-[#ccfbf1] via-[#e0f2fe] to-[#f3e8ff] relative text-slate-900 pt-20">
+        {/* Animated Background Elements */}
+        <div className="fixed inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute -top-40 -right-40 w-[800px] h-[800px] bg-teal-200/40 rounded-full mix-blend-multiply filter blur-[100px] animate-blob"></div>
+          <div className="absolute top-1/2 -left-40 w-[800px] h-[800px] bg-purple-200/40 rounded-full mix-blend-multiply filter blur-[100px] animate-blob animation-delay-2000"></div>
+          <div className="absolute -bottom-40 right-1/2 w-[800px] h-[800px] bg-blue-200/40 rounded-full mix-blend-multiply filter blur-[100px] animate-blob animation-delay-4000"></div>
+        </div>
+        <div className="relative z-10 container mx-auto px-4 py-16">
         {/* Hero Section */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}

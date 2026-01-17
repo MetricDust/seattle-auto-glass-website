@@ -35,10 +35,6 @@ export default function InsuranceGlassPanel() {
                                     </div>
                                 ))}
                             </div>
-
-                            <button className="glass-button text-white px-8 py-4 rounded-full font-bold hover:scale-105 transition-transform">
-                                Verify My Coverage
-                            </button>
                         </div>
 
                         <div className="grid grid-cols-2 gap-4">
@@ -47,7 +43,7 @@ export default function InsuranceGlassPanel() {
                                     key={idx}
                                     className="glass-card rounded-xl p-6 flex items-center justify-center h-24 hover:bg-white/40 transition-colors"
                                 >
-                                    <span className="text-slate-500 font-bold text-lg">{insurer}</span>
+                                    <span className="text-blue-600 font-bold text-lg">{insurer}</span>
                                 </div>
                             ))}
                         </div>

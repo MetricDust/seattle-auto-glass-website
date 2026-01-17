@@ -78,18 +78,46 @@ export default function GlassFooter() {
             <div>
               <h4 className="font-bold text-slate-800 mb-6">Quick Links</h4>
               <ul className="space-y-4">
-                {["Services", "Process", "Insurance", "Reviews", "Contact"].map(
-                  (item) => (
-                    <li key={item}>
-                      <a
-                        href={`#${item.toLowerCase()}`}
-                        className="text-slate-600 hover:text-blue-600 transition-colors"
-                      >
-                        {item}
-                      </a>
-                    </li>
-                  )
-                )}
+                <li>
+                  <a
+                    href="#services"
+                    className="text-slate-600 hover:text-blue-600 transition-colors"
+                  >
+                    Services
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/process"
+                    className="text-slate-600 hover:text-blue-600 transition-colors"
+                  >
+                    Process
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/insurance"
+                    className="text-slate-600 hover:text-blue-600 transition-colors"
+                  >
+                    Insurance
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#reviews"
+                    className="text-slate-600 hover:text-blue-600 transition-colors"
+                  >
+                    Reviews
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/contact"
+                    className="text-slate-600 hover:text-blue-600 transition-colors"
+                  >
+                    Contact
+                  </a>
+                </li>
               </ul>
             </div>
 
@@ -106,10 +134,10 @@ export default function GlassFooter() {
                 <li className="flex items-start space-x-3 text-slate-600">
                   <Mail className="w-5 h-5 text-blue-500 mt-0.5" />
                   <a
-                    href="mailto:info@seattleautoglassllc.com"
+                    href="mailto:contact@seattleautoglassllc.com"
                     className="hover:text-blue-600"
                   >
-                    info@seattleautoglassllc.com
+                    contact@seattleautoglassllc.com
                   </a>
                 </li>
                 <li className="flex items-start space-x-3 text-slate-600">
@@ -131,11 +159,7 @@ export default function GlassFooter() {
                   <span>Saturday</span>
                   <span className="font-medium">9:00 AM - 4:00 PM</span>
                 </li>
-                <li className="flex justify-between text-red-500 font-bold">
-                  <span>Emergency</span>
-                  <span>Available 24/7 </span>
-                </li>
-              </ul>
+                </ul>
             </div>
           </div>
 

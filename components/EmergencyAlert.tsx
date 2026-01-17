@@ -11,10 +11,6 @@ export default function EmergencyAlert() {
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
             <span className="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
           </div>
-          <span className="text-xs font-bold text-red-800 tracking-wide uppercase">
-            24/7 Emergency Service
-          </span>
-          <div className="h-4 w-px bg-red-200" />
           <a
             href="tel:425-931-4095"
             className="flex items-center text-sm font-bold text-red-600 hover:text-red-700 transition-colors"

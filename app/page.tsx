@@ -3,14 +3,12 @@
 import { useRef } from "react";
 import { useScroll } from "framer-motion";
 import GlassHeader from "@/components/GlassHeader";
-import EmergencyAlert from "@/components/EmergencyAlert";
 import GlassScrollCanvas from "@/components/GlassScrollCanvas";
 import ServiceGlassOverlay from "@/components/ServiceGlassOverlay";
 import GlassServiceGrid from "@/components/GlassServiceGrid";
 import GlassProcessSection from "@/components/GlassProcessSection";
 import InsuranceGlassPanel from "@/components/InsuranceGlassPanel";
 import TestimonialGlassCards from "@/components/TestimonialGlassCards";
-import ContactGlassForm from "@/components/ContactGlassForm";
 import GlassFooter from "@/components/GlassFooter";
 
 export default function Home() {
@@ -30,7 +28,6 @@ export default function Home() {
       </div>
 
       <GlassHeader />
-      <EmergencyAlert />
 
       {/* Main Scroll Section - Black background localized to here */}
       <section ref={containerRef} className="h-[500vh] relative z-0 bg-black">
@@ -52,7 +49,6 @@ export default function Home() {
         <GlassProcessSection />
         <InsuranceGlassPanel />
         <TestimonialGlassCards />
-        <ContactGlassForm />
         <GlassFooter />
       </div>
     </main>

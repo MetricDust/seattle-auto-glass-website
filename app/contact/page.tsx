@@ -21,8 +21,8 @@ const contactInfo = [
   {
     icon: Mail,
     title: "Email Us",
-    details: "info@seattleautoglass.com",
-    action: "mailto:info@seattleautoglass.com",
+    details: "contact@seattleautoglassllc.com",
+    action: "mailto:contact@seattleautoglassllc.com",
     description: "We respond within 24 hours"
   },
   {
@@ -35,7 +35,7 @@ const contactInfo = [
     icon: Clock,
     title: "Business Hours",
     details: "Mon-Fri: 8AM-6PM",
-    description: "Emergency service available"
+    description: "On-site repairs available"
   }
 ];
 
@@ -105,8 +105,14 @@ export default function ContactPage() {
   return (
     <>
       <GlassHeader />
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-cyan-50 pt-20">
-        <div className="container mx-auto px-4 py-16">
+      <div className="min-h-screen bg-gradient-to-br from-[#ccfbf1] via-[#e0f2fe] to-[#f3e8ff] relative text-slate-900 pt-20">
+        {/* Animated Background Elements */}
+        <div className="fixed inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute -top-40 -right-40 w-[800px] h-[800px] bg-teal-200/40 rounded-full mix-blend-multiply filter blur-[100px] animate-blob"></div>
+          <div className="absolute top-1/2 -left-40 w-[800px] h-[800px] bg-purple-200/40 rounded-full mix-blend-multiply filter blur-[100px] animate-blob animation-delay-2000"></div>
+          <div className="absolute -bottom-40 right-1/2 w-[800px] h-[800px] bg-blue-200/40 rounded-full mix-blend-multiply filter blur-[100px] animate-blob animation-delay-4000"></div>
+        </div>
+        <div className="relative z-10 container mx-auto px-4 py-16">
           {/* Hero Section */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -121,7 +127,7 @@ export default function ContactPage() {
               </span>
             </h1>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
-              Have a cracked windshield or need auto glass services? 
+              Have a chipped windshield and need auto glass repair services? 
               Our expert team is ready to help you get back on the road safely.
             </p>
           </motion.div>
@@ -219,11 +225,7 @@ export default function ContactPage() {
                     onChange={handleChange}
                   >
                     <option value="">Select a service</option>
-                    <option value="Windshield Chip Repair">Windshield Chip Repair</option>
-                    <option value="Windshield Replacement">Windshield Replacement</option>
-                    <option value="Mobile Service">Mobile Service</option>
-                    <option value="Insurance Claims">Insurance Claims</option>
-                    <option value="Free Estimates">Free Estimates</option>
+                    <option value="Rock Chip Repair">Rock Chip Repair</option>
                   </select>
                 </div>
                 <div>
@@ -250,28 +252,6 @@ export default function ContactPage() {
                   </button>
                 </div>
               </form>
-            </div>
-          </motion.div>
-
-          {/* Emergency Notice */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-          >
-            <div className="bg-gradient-to-r from-amber-500 to-orange-500 rounded-3xl p-8 text-white text-center">
-              <h3 className="text-2xl font-bold mb-4">Emergency Service Available</h3>
-              <p className="text-lg mb-4">
-                Need immediate assistance? Call us for emergency windshield repair service.
-              </p>
-              <a
-                href="tel:425-931-4095"
-                className="inline-flex items-center gap-3 px-6 py-3 bg-white text-amber-600 rounded-full font-semibold hover:scale-105 transition-transform"
-              >
-                <Phone className="w-5 h-5" />
-                <span>Call Now: (425) 931-4095</span>
-              </a>
             </div>
           </motion.div>
         </div>

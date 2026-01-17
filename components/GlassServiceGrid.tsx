@@ -29,13 +29,6 @@ const services: ServiceItem[] = [
     image: "/images/repairment.png",
   },
   {
-    title: "Windshield Replacement",
-    desc: "Complete replacement for severe damage using OEM quality glass and certified technicians.",
-    features: ["OEM Quality Glass", "Certified Techs", "Safety Verified"],
-    icon: Wrench,
-    image: "/images/replacment.png",
-  },
-  {
     title: "Mobile Service",
     desc: "We come to you in Queen Anne and greater Seattle. Home or office service available.",
     features: ["We Come to You", "No Extra Fee", "Fully Equipped"],
@@ -156,16 +149,16 @@ export default function GlassServiceGrid() {
           </div>
         </div>
 
-        {/* Top 3 Services with Zoom Animation */}
+        {/* Top 2 Services with Zoom Animation */}
         <div className="flex flex-col gap-8 md:gap-12 mb-24">
-          {services.slice(0, 3).map((service, idx) => (
+          {services.slice(0, 2).map((service, idx) => (
             <ZoomingServiceCard key={idx} service={service} />
           ))}
         </div>
 
         {/* Remaining Services - Standard Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {services.slice(3).map((service, idx) => (
+        <div className="grid md:grid-cols-3 gap-8">
+          {services.slice(2).map((service, idx) => (
             <motion.div
               key={idx}
               initial={{ opacity: 0, scale: 0.8, y: 20 }}

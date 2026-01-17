@@ -6,75 +6,26 @@ import { motion, AnimatePresence } from "framer-motion";
 import clsx from "clsx";
 
 export default function GlassHeader() {
-  const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isExpanded, setIsExpanded] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-    window.addEventListener("scroll", handleScroll);
-
-    // Initial animation trigger
-    const timer = setTimeout(() => {
-      setIsExpanded(true);
-    }, 1500); // Wait 1.5s before expanding
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      clearTimeout(timer);
-    };
-  }, []);
 
   return (
     <header
-      className={clsx(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300 flex justify-center",
-        isScrolled ? "py-4" : "py-6"
-      )}
+      className="fixed top-0 left-0 right-0 z-50 py-6 flex justify-center"
     >
       <div className="container mx-auto px-4 md:px-6 flex justify-center">
-        <motion.div
-          initial={{ width: "260px", opacity: 0, y: -50 }}
-          animate={{
-            width: isExpanded ? "100%" : "260px",
-            opacity: 1,
-            y: 0,
-          }}
-          transition={{
-            type: "spring",
-            stiffness: 120,
-            damping: 20,
-            delay: 0.5,
-          }}
-          className={clsx(
-            "glass-panel rounded-full px-6 py-3 flex items-center justify-between overflow-hidden",
-            isScrolled
-              ? "bg-white/20 backdrop-blur-xl"
-              : "bg-white/10 backdrop-blur-lg"
-          )}
+        <div
+          className="glass-panel rounded-full px-6 py-3 flex items-center justify-between overflow-hidden bg-white/10 backdrop-blur-lg w-full"
         >
           {/* Logo - Always Visible */}
           <div className="flex items-center space-x-2 shrink-0">
             <img src="/images/logo.png" alt="Logo" className="w-12 h-12" />
-            <motion.span
-              layout
-              className="text-lg font-bold bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent whitespace-nowrap"
-            >
+            <span className="text-lg font-bold bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent whitespace-nowrap">
               Seattle Auto Glass LLC
-            </motion.span>
+            </span>
           </div>
 
-          {/* Desktop Nav - Fades In on Expand */}
-          <motion.nav
-            animate={{ opacity: isExpanded ? 1 : 0 }}
-            transition={{ duration: 0.3, delay: 0.2 }}
-            className={clsx(
-              "hidden md:flex items-center space-x-6",
-              !isExpanded && "pointer-events-none absolute opacity-0"
-            )}
-          >
+          {/* Desktop Nav */}
+          <nav className="hidden md:flex items-center space-x-6">
             {[
               { name: "Home", href: "/" },
               { name: "Process", href: "/process" },
@@ -92,17 +43,10 @@ export default function GlassHeader() {
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-500 transition-all group-hover:w-full" />
               </a>
             ))}
-          </motion.nav>
+          </nav>
 
-          {/* CTA & Mobile Toggle - Fades In on Expand */}
-          <motion.div
-            animate={{ opacity: isExpanded ? 1 : 0 }}
-            transition={{ duration: 0.3, delay: 0.2 }}
-            className={clsx(
-              "flex items-center space-x-4",
-              !isExpanded && "pointer-events-none absolute -right-96 opacity-0"
-            )}
-          >
+          {/* CTA & Mobile Toggle */}
+          <div className="flex items-center space-x-4">
             <a
               href="tel:425-931-4095"
               className="glass-button hidden sm:flex items-center space-x-2 px-4 py-2 rounded-full text-white text-sm font-semibold transition-transform hover:scale-105 active:scale-95 whitespace-nowrap"
@@ -121,8 +65,8 @@ export default function GlassHeader() {
                 <Menu className="w-6 h-6" />
               )}
             </button>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       </div>
 
       {/* Mobile Menu */}
