@@ -141,7 +141,7 @@ export default function ContactPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: idx * 0.1 }}
                 viewport={{ once: true, margin: "-100px" }}
-                className="bg-white rounded-3xl p-8 shadow-xl shadow-blue-500/5 border border-white/50 text-center hover:shadow-2xl transition-all duration-300"
+                className="bg-white rounded-3xl p-8 shadow-xl shadow-blue-500/5 border border-white/50 text-center hover:shadow-2xl transition-all duration-300 overflow-hidden"
               >
                 <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center mx-auto mb-6">
                   <info.icon className="w-8 h-8 text-white" />
