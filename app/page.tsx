@@ -8,7 +8,6 @@ import ServiceGlassOverlay from "@/components/ServiceGlassOverlay";
 import GlassServiceGrid from "@/components/GlassServiceGrid";
 import GlassProcessSection from "@/components/GlassProcessSection";
 import InsuranceGlassPanel from "@/components/InsuranceGlassPanel";
-import TestimonialGlassCards from "@/components/TestimonialGlassCards";
 import GlassFooter from "@/components/GlassFooter";
 
 export default function Home() {
@@ -48,7 +47,6 @@ export default function Home() {
         <GlassServiceGrid />
         <GlassProcessSection />
         <InsuranceGlassPanel />
-        <TestimonialGlassCards />
         <GlassFooter />
       </div>
     </main>

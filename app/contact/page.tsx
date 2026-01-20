@@ -28,7 +28,7 @@ const contactInfo = [
   {
     icon: MapPin,
     title: "Visit Us",
-    details: "Queen Anne, Seattle, WA",
+    details: "909 W Raye St Seattle WA 98119",
     description: "By appointment only"
   },
   {

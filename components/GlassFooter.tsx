@@ -142,7 +142,7 @@ export default function GlassFooter() {
                 </li>
                 <li className="flex items-start space-x-3 text-slate-600">
                   <MapPin className="w-5 h-5 text-blue-500 mt-0.5" />
-                  <span>Queen Anne, Seattle, WA</span>
+                  <span> 909 W Raye St Seattle WA 98119</span>
                 </li>
               </ul>
             </div>
