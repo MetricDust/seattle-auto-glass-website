@@ -4,7 +4,7 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Shield, Wrench, Sparkles } from "lucide-react";
 import dynamic from "next/dynamic";
-import GlassScrollCanvas from "../../components/GlassScrollCanvas";
+import ProcessVideoAnimation from "../../components/ProcessVideoAnimation";
 
 const GlassHeader = dynamic(() => import("../../components/GlassHeader"), {
   loading: () => <div className="h-16 bg-white" />,
@@ -78,11 +78,8 @@ export default function ProcessPage() {
           <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-10 lg:gap-16 items-start">
             <div className="relative">
               <div className="sticky top-28 h-[70vh] rounded-[2.5rem] overflow-hidden bg-slate-950 shadow-2xl shadow-blue-500/20 border border-white/10">
-                <GlassScrollCanvas
-                  scrollYProgress={reversedScroll}
-                  totalFrames={91}
-                  startFrame={40}
-                  imageFolderPath="/Transitionframesv2"
+                <ProcessVideoAnimation
+                  videoSrc="/process-animation.mp4"
                 />
               </div>
             </div>
