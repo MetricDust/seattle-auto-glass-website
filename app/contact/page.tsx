@@ -121,13 +121,13 @@ export default function ContactPage() {
             className="text-center mb-16"
           >
             <h1 className="text-4xl md:text-6xl font-black text-slate-900 mb-6 leading-tight">
-              Get in
+              Get in Touch
               <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">
-                Touch With Us
+                With Us
               </span>
             </h1>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
-              Have a chipped windshield and need auto glass repair services? 
+              Have a chipped windshield and need auto glass repair services?
               Our expert team is ready to help you get back on the road safely.
             </p>
           </motion.div>
@@ -165,13 +165,15 @@ export default function ContactPage() {
             ))}
           </div>
 
-          
+
           {/* Contact Form */}
           <motion.div
+            id="quote-form"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
+            className="scroll-mt-[200px]"
           >
             <div className="bg-white rounded-3xl p-12 shadow-xl shadow-blue-500/5 border border-white/50">
               <h2 className="text-3xl font-black text-slate-900 mb-8 text-center">

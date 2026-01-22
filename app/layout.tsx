@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Montserrat, Inter } from "next/font/google";
 import "./globals.css";
 import GlobalCrackEffect from "@/components/GlobalCrackEffect";
+import TopAlertBar from "@/components/TopAlertBar";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -29,6 +30,7 @@ export default function RootLayout({
       <body
         className={`${montserrat.variable} ${inter.variable} font-sans antialiased`}
       >
+        <TopAlertBar />
         <GlobalCrackEffect />
         {children}
       </body>

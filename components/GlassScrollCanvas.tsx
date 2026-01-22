@@ -191,7 +191,7 @@ export default function GlassScrollCanvas({
     <>
       <canvas
         ref={canvasRef}
-        className="w-full h-full block touch-none"
+        className="w-full h-full block"
         style={{ background: "black" }}
       />
       {/* Background loading progress indicator (subtle) */}

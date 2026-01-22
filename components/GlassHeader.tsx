@@ -1,16 +1,26 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Phone, Menu, X } from "lucide-react";
+import { Phone, Menu, X, MessageSquare } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import clsx from "clsx";
 
 export default function GlassHeader() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
+  // Check if we're in static export mode
+  const isStaticExport = typeof window !== 'undefined' && window.location.pathname.includes('.html');
+
+  const getHref = (path: string) => {
+    if (isStaticExport) {
+      return path === '/' ? '/index.html' : `${path}.html`;
+    }
+    return path;
+  };
+
   return (
     <header
-      className="fixed top-0 left-0 right-0 z-50 py-6 flex justify-center"
+      className="fixed top-14 left-0 right-0 z-50 py-6 flex justify-center"
     >
       <div className="container mx-auto px-4 md:px-6 flex justify-center">
         <div
@@ -27,12 +37,12 @@ export default function GlassHeader() {
           {/* Desktop Nav */}
           <nav className="hidden md:flex items-center space-x-6">
             {[
-              { name: "Home", href: "/" },
-              { name: "Process", href: "/process" },
-              { name: "Costs", href: "/costs" },
-              { name: "Insurance", href: "/insurance" },
-              { name: "FAQ", href: "/faq" },
-              { name: "Contact", href: "/contact" }
+              { name: "Home", href: getHref("/") },
+              { name: "Process", href: getHref("/process") },
+              { name: "Costs", href: getHref("/costs") },
+              { name: "Insurance", href: getHref("/insurance") },
+              { name: "FAQ", href: getHref("/faq") },
+              { name: "Contact", href: getHref("/contact") }
             ].map((item) => (
               <a
                 key={item.name}
@@ -48,11 +58,11 @@ export default function GlassHeader() {
           {/* CTA & Mobile Toggle */}
           <div className="flex items-center space-x-4">
             <a
-              href="tel:425-931-4095"
+              href={getHref("/contact#quote-form")}
               className="glass-button hidden sm:flex items-center space-x-2 px-4 py-2 rounded-full text-white text-sm font-semibold transition-transform hover:scale-105 active:scale-95 whitespace-nowrap"
             >
-              <Phone className="w-4 h-4" />
-              <span>(425) 931-4095</span>
+              <MessageSquare className="w-4 h-4" />
+              <span>Get a Free Quote</span>
             </a>
 
             <button
@@ -80,12 +90,12 @@ export default function GlassHeader() {
           >
             <div className="glass-panel rounded-2xl p-4 flex flex-col space-y-4 mx-4">
               {[
-                { name: "Home", href: "/" },
-                { name: "Process", href: "/process" },
-                { name: "Costs", href: "/costs" },
-                { name: "Insurance", href: "/insurance" },
-                { name: "FAQ", href: "/faq" },
-                { name: "Contact", href: "/contact" }
+                { name: "Home", href: getHref("/") },
+                { name: "Process", href: getHref("/process") },
+                { name: "Costs", href: getHref("/costs") },
+                { name: "Insurance", href: getHref("/insurance") },
+                { name: "FAQ", href: getHref("/faq") },
+                { name: "Contact", href: getHref("/contact") }
               ].map((item) => (
                 <a
                   key={item.name}
@@ -97,11 +107,12 @@ export default function GlassHeader() {
                 </a>
               ))}
               <a
-                href="tel:425-931-4095"
+                href={getHref("/contact#quote-form")}
                 className="glass-button flex items-center justify-center space-x-2 px-4 py-3 rounded-xl text-white font-semibold"
+                onClick={() => setIsMobileMenuOpen(false)}
               >
-                <Phone className="w-5 h-5" />
-                <span>Call Now</span>
+                <MessageSquare className="w-5 h-5" />
+                <span>Get a Free Quote</span>
               </a>
             </div>
           </motion.div>
