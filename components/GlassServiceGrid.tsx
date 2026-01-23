@@ -80,9 +80,9 @@ function ZoomingServiceCard({ service }: { service: ServiceItem }) {
     <motion.div
       ref={containerRef}
       style={{ scale, opacity, y }}
-      className="group relative bg-white rounded-[2rem] md:rounded-[2.5rem] p-3 md:p-4 shadow-xl shadow-blue-900/5 border border-white hover:shadow-2xl hover:shadow-blue-500/10 transition-all duration-500"
+      className="group relative bg-white rounded-[2rem] md:rounded-[2.5rem] p-3 md:p-4 shadow-xl shadow-blue-900/5 border border-white hover:shadow-2xl hover:shadow-blue-500/10 transition-all duration-500 md:min-h-[450px]"
     >
-      <div className="flex flex-col md:flex-row">
+      <div className="flex flex-col md:flex-row h-full">
         {/* Content Side (Left - 45%) */}
         <div className="w-full md:w-[45%] p-6 md:p-12 flex flex-col justify-center">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 text-blue-600 w-fit mb-4 md:mb-6">
@@ -116,8 +116,8 @@ function ZoomingServiceCard({ service }: { service: ServiceItem }) {
         </div>
 
         {/* Image Side (Right - 55%) */}
-        <div className="w-full md:w-[55%] flex">
-          <div className="relative w-full aspect-[4/3] md:aspect-auto md:min-h-full rounded-[1.5rem] md:rounded-[2rem] overflow-hidden m-2 md:m-0">
+        <div className="w-full md:w-[55%] md:relative">
+          <div className="relative w-full aspect-[4/3] md:aspect-none md:absolute md:inset-0 rounded-[1.5rem] md:rounded-[2rem] overflow-hidden m-2 md:m-0 md:h-full">
             <div className="absolute inset-0 bg-blue-600/10 mix-blend-multiply z-10 group-hover:bg-transparent transition-all duration-500" />
             <img
               src={service.image}

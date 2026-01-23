@@ -127,8 +127,8 @@ export default function GlassFooter() {
               <ul className="space-y-4">
                 <li className="flex items-start space-x-3 text-slate-600">
                   <Phone className="w-5 h-5 text-blue-500 mt-0.5" />
-                  <a href="tel:425-931-4095" className="hover:text-blue-600">
-                    (425) 931-4095
+                  <a href="tel:206-886-6240" className="hover:text-blue-600">
+                    (206) 886-6240
                   </a>
                 </li>
                 <li className="flex items-start space-x-3 text-slate-600">
@@ -159,7 +159,7 @@ export default function GlassFooter() {
                   <span>Saturday</span>
                   <span className="font-medium">9:00 AM - 4:00 PM</span>
                 </li>
-                </ul>
+              </ul>
             </div>
           </div>
 
