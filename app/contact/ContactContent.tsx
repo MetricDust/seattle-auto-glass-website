@@ -14,8 +14,8 @@ const contactInfo = [
     {
         icon: Phone,
         title: "Call Us",
-        details: "(206) 886-6240",
-        action: "tel:206-886-6240",
+        details: "(206) 886-1092",
+        action: "tel:206-886-1092",
         description: "Available Monday-Friday, 8AM-6PM"
     },
     {
@@ -201,7 +201,7 @@ export default function ContactContent() {
                                             value={formData.phone}
                                             onChange={handleChange}
                                             className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all"
-                                            placeholder="(206) 886-6240"
+                                            placeholder="(206) 886-1092"
                                             required
                                         />
                                     </div>

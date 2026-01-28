@@ -21,11 +21,11 @@ export default function TopAlertBar() {
                     <span className="xs:hidden">Call/Text Us:</span>
                 </div>
                 <a
-                    href="tel:206-886-6240"
+                    href="tel:206-886-1092"
                     className="flex items-center hover:scale-105 transition-transform group"
                 >
                     <Phone className="w-3 h-3 mr-2 group-hover:rotate-12 transition-transform" />
-                    <span className="underline underline-offset-4 decoration-blue-400 group-hover:decoration-white transition-colors">206-886-6240</span>
+                    <span className="underline underline-offset-4 decoration-blue-400 group-hover:decoration-white transition-colors">206-886-1092</span>
                 </a>
             </motion.div>
         </div>

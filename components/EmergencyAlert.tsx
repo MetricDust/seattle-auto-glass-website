@@ -12,11 +12,11 @@ export default function EmergencyAlert() {
             <span className="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
           </div>
           <a
-            href="tel:206-886-6240"
+            href="tel:206-886-1092"
             className="flex items-center text-sm font-bold text-red-600 hover:text-red-700 transition-colors"
           >
             <Phone className="w-3 h-3 mr-1.5" />
-            (206) 886-6240
+            (206) 886-1092
           </a>
         </div>
       </div>

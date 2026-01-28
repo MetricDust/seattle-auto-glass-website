@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     template: "%s | Seattle Auto Glass LLC",
   },
   description:
-    "Expert windshield repair and replacement in Seattle. Mobile service, insurance approved, lifetime guarantee. Call (425) 399-3393 for a free quote.",
+    "Expert windshield repair and replacement in Seattle. Mobile service, insurance approved, lifetime guarantee. Call (206) 886-1092 for a free quote.",
   keywords: [
     "auto glass",
     "windshield repair",
