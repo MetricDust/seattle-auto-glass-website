@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import {
   motion,
   useScroll,
@@ -34,6 +34,15 @@ const steps = [
 export default function GlassProcessSection() {
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const containerRef = useRef<HTMLDivElement>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const mql = window.matchMedia("(max-width: 1023px)");
+    const onChange = () => setIsMobile(mql.matches);
+    setIsMobile(mql.matches);
+    mql.addEventListener("change", onChange);
+    return () => mql.removeEventListener("change", onChange);
+  }, []);
 
   // Track scroll progress relative to this section
   const { scrollYProgress } = useScroll({
@@ -43,6 +52,7 @@ export default function GlassProcessSection() {
 
   // Update active index based on scroll position
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    if (isMobile) return;
     if (latest < 0.33) {
       setActiveIndex(0);
     } else if (latest < 0.66) {
@@ -74,8 +84,8 @@ export default function GlassProcessSection() {
   };
 
   return (
-    <section ref={containerRef} id="process" className="relative h-[300vh]">
-      <div className="sticky top-0 min-h-screen lg:h-screen flex items-center overflow-y-auto lg:overflow-hidden py-12 lg:py-0">
+    <section ref={containerRef} id="process" className="relative lg:h-[300vh] h-auto">
+      <div className="lg:sticky relative top-0 h-auto lg:h-screen flex items-center lg:overflow-hidden py-12 lg:py-0">
         <div className="container mx-auto px-4 relative z-10 w-full">
           <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-24">
             {/* Visual Side (Left) - Stays Static */}
@@ -160,7 +170,7 @@ export default function GlassProcessSection() {
 
               <div className="space-y-4 sm:space-y-6">
                 {steps.map((step, idx) => {
-                  const isActive = activeIndex === idx;
+                  const isActive = activeIndex === idx || isMobile;
                   return (
                     <motion.div
                       key={idx}
@@ -168,28 +178,25 @@ export default function GlassProcessSection() {
                         opacity: isActive ? 1 : 0.6,
                         scale: isActive ? 1 : 0.98,
                       }}
-                      className={`relative pl-12 sm:pl-16 py-3 sm:py-4 rounded-xl sm:rounded-2xl transition-all duration-300 ${
-                        isActive
-                          ? "bg-white shadow-lg shadow-blue-500/5 border border-blue-100"
-                          : "bg-transparent border border-transparent"
-                      }`}
+                      className={`relative pl-12 sm:pl-16 py-3 sm:py-4 rounded-xl sm:rounded-2xl transition-all duration-300 ${isActive
+                        ? "bg-white shadow-lg shadow-blue-500/5 border border-blue-100"
+                        : "bg-transparent border border-transparent"
+                        }`}
                     >
                       {/* Number Plate */}
                       <div
-                        className={`absolute left-3 sm:left-4 top-4 sm:top-5 w-7 h-7 sm:w-9 sm:h-9 rounded-lg shadow-sm flex items-center justify-center font-black text-xs sm:text-sm transition-all ${
-                          isActive
-                            ? "bg-blue-600 text-white scale-110"
-                            : "bg-slate-100 text-slate-400"
-                        }`}
+                        className={`absolute left-3 sm:left-4 top-4 sm:top-5 w-7 h-7 sm:w-9 sm:h-9 rounded-lg shadow-sm flex items-center justify-center font-black text-xs sm:text-sm transition-all ${isActive
+                          ? "bg-blue-600 text-white scale-110"
+                          : "bg-slate-100 text-slate-400"
+                          }`}
                       >
                         {step.number}
                       </div>
 
                       <div className="w-full text-left flex items-center justify-between group cursor-default">
                         <h3
-                          className={`text-lg sm:text-xl font-black tracking-tight transition-colors ${
-                            isActive ? "text-blue-600" : "text-slate-400"
-                          }`}
+                          className={`text-lg sm:text-xl font-black tracking-tight transition-colors ${isActive ? "text-blue-600" : "text-slate-400"
+                            }`}
                         >
                           {step.title}
                         </h3>

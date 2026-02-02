@@ -21,8 +21,8 @@ const contactInfo = [
     {
         icon: Mail,
         title: "Email Us",
-        details: "contact@seattleautoglassllc.com",
-        action: "mailto:contact@seattleautoglassllc.com",
+        details: "kyle@seattleautoglassllc.com",
+        action: "mailto:kyle@seattleautoglassllc.com",
         description: "We respond within 24 hours"
     },
     {

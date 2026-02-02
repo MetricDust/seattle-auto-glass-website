@@ -5,6 +5,9 @@ export const metadata: Metadata = {
   title: "Windshield Repair Costs | Seattle Auto Glass LLC",
   description:
     "Understand the factors affecting windshield chip repair costs. We provide competitive pricing for auto glass repair.",
+  alternates: {
+    canonical: "/costs",
+  },
 };
 
 export default function CostsPage() {

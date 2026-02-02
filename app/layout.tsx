@@ -24,6 +24,10 @@ export const metadata: Metadata = {
     "Expert windshield repair and replacement in Seattle. Mobile service, insurance approved, lifetime guarantee. Call (206) 886-1092 for a free quote.",
   keywords: [
     "auto glass",
+    "chipped windshield",
+    "chip repair",
+    "damaged windshield repair",
+    "chipped windshield repair",
     "windshield repair",
     "windshield replacement",
     "Seattle auto glass",
@@ -56,6 +60,13 @@ export const metadata: Metadata = {
       },
     ],
   },
+  other: {
+    "business:contact_data:phone_number": "206-886-1092",
+    "business:contact_data:website": "https://seattleautoglass.com",
+    "business:contact_data:locality": "Seattle",
+    "business:contact_data:region": "WA",
+    "business:contact_data:country_name": "United States",
+  },
   twitter: {
     card: "summary_large_image",
     title: "Seattle Auto Glass LLC | Premium Windshield Repair & Replacement",
@@ -73,6 +84,9 @@ export const metadata: Metadata = {
       "max-image-preview": "large",
       "max-snippet": -1,
     },
+  },
+  alternates: {
+    canonical: "/",
   },
 };
 

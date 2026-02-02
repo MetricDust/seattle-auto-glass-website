@@ -10,7 +10,7 @@ export default function GlassHeader() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
-    <header className="fixed top-14 left-0 right-0 z-50 py-6 flex justify-center">
+    <header className="fixed top-10 left-0 right-0 z-50 pt-2 pb-0 flex justify-center">
       <div className="container mx-auto px-4 md:px-6 flex justify-center">
         <div className="glass-panel rounded-full px-6 py-3 flex items-center justify-between overflow-hidden bg-white/10 backdrop-blur-lg w-full">
           {/* Logo - Always Visible */}

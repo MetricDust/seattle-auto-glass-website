@@ -33,7 +33,7 @@ export default function GlassFooter() {
   return (
     <footer className="relative z-10 pt-20 pb-10">
       <div className="container mx-auto px-4">
-        <div className="relative overflow-hidden rounded-3xl border border-white/10 p-12 mb-8 backdrop-blur-2xl shadow-xl">
+        <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-white/40 p-6 md:p-12 mb-8 backdrop-blur-2xl shadow-xl">
           {/* Rain Droplets Animation */}
           <div className="absolute inset-0 pointer-events-none z-0">
             {droplets.map((drop) => (
@@ -59,7 +59,7 @@ export default function GlassFooter() {
             ))}
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 relative z-10">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 relative z-10">
             {/* Brand */}
             <div className="space-y-6">
               <div className="flex items-center space-x-2">
@@ -102,14 +102,7 @@ export default function GlassFooter() {
                     Insurance
                   </a>
                 </li>
-                <li>
-                  <a
-                    href="#reviews"
-                    className="text-slate-600 hover:text-blue-600 transition-colors"
-                  >
-                    Reviews
-                  </a>
-                </li>
+
                 <li>
                   <a
                     href="/contact"
@@ -126,22 +119,25 @@ export default function GlassFooter() {
               <h4 className="font-bold text-slate-800 mb-6">Contact Us</h4>
               <ul className="space-y-4">
                 <li className="flex items-start space-x-3 text-slate-600">
-                  <Phone className="w-5 h-5 text-blue-500 mt-0.5" />
+                  <Phone className="w-5 h-5 md:w-6 md:h-6 text-blue-500 mt-0.5 md:mt-0" />
                   <a href="tel:206-886-1092" className="hover:text-blue-600">
                     (206) 886-1092
                   </a>
                 </li>
                 <li className="flex items-start space-x-3 text-slate-600">
-                  <Mail className="w-5 h-5 text-blue-500 mt-0.5" />
+                  <Mail
+                    className="w-5 h-5 md:w-8 md:h-8 text-blue-500 mt-0.5 md:mt-0"
+                    style={{ minWidth: "1.25rem", minHeight: "1.25rem" }}
+                  />
                   <a
-                    href="mailto:contact@seattleautoglassllc.com"
+                    href="mailto:kyle@seattleautoglassllc.com"
                     className="hover:text-blue-600"
                   >
-                    contact@seattleautoglassllc.com
+                    kyle@seattleautoglassllc.com
                   </a>
                 </li>
                 <li className="flex items-start space-x-3 text-slate-600">
-                  <MapPin className="w-5 h-5 text-blue-500 mt-0.5" />
+                  <MapPin className="w-5 h-5 md:w-6 md:h-6 text-blue-500 mt-0.5 md:mt-0" />
                   <span> 909 W Raye St Seattle WA 98119</span>
                 </li>
               </ul>
@@ -163,7 +159,7 @@ export default function GlassFooter() {
             </div>
           </div>
 
-          <div className="border-t border-slate-200 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0 relative z-10">
+          <div className="border-t border-slate-200 mt-8 md:mt-12 pt-6 md:pt-8 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0 relative z-10">
             <p className="text-sm text-slate-500">
               © {new Date().getFullYear()} Seattle Auto Glass LLC. All rights
               reserved.
