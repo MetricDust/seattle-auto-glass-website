@@ -14,19 +14,19 @@ const costFactors = [
         icon: DollarSign,
         title: "The Size Matters",
         description: "Fixing a small chip is cheaper than a larger crack; why?",
-        details: "Because minor issues can often be filled in quickly, while bigger ones might require more complicated repairs to prevent them from worsening, it's like patching a small hole in your jeans versus mending a big tear."
+        details: "Because minor issues can often be filled in quickly, while bigger ones might require more complicated repairs to prevent them from worsening, it's like patching a small hole in your jeans versus mending a big tear. A small rock chip, typically smaller than a quarter, requires less resin and labor. However, if that chip begins to spider out into a complex crack, the structural integrity of the windshield is compromised, necessitating a more intensive repair process or a full replacement. We recommend addressing minor dings immediately to keep your [windshield repair costs](/costs/) as low as possible."
     },
     {
         icon: TrendingUp,
         title: "Type of Damage Counts Too",
         description: "Not all windshield villains strike equally.",
-        details: "Some chips are superficial round dings; others look like stars or bullseyes, with cracks shooting outward. These varying shapes also influence repair costs because some require more complex fixes to restore integrity to the glass."
+        details: "Some chips are superficial round dings; others look like stars or bullseyes, with cracks shooting outward. These varying shapes also influence repair costs because some require more complex fixes to restore integrity to the glass. Star-shaped breaks, for instance, have micro-cracks that need to be fully vacuumed and filled to ensure they don't expand. Bullseyes are generally easier to fill, but their depth can affect the final clarity of the repair. Our technicians use specialized [repair processes](/process/) tailored to each specific type of damage."
     },
     {
         icon: MapPin,
         title: "Your Location Plays a Part",
         description: "Suppose you live in LA or New York City.",
-        details: "You'll pay more for auto services due to higher operational costs than in smaller towns or rural areas where prices tend to be lower. It's about more than where you lay your head at night; rates can vary between shops even within cities."
+        details: "You'll pay more for auto services due to higher operational costs than in smaller towns or rural areas where prices tend to be lower. In the Seattle area, our mobile service helps offset some of these costs by bringing the repair directly to your driveway or workplace. Whether you are in Queen Anne, Downtown, or Bellevue, we offer competitive pricing that reflects the local market while maintaining premium service standards. Don't let city-center prices deter you from essential safety maintenance."
     }
 ];
 
@@ -152,16 +152,22 @@ export default function CostsContent() {
                             <div className="space-y-6">
                                 <div>
                                     <h4 className="text-lg font-semibold text-slate-800 mb-2">Weather Events & Surge Pricing</h4>
-                                    <p className="text-slate-600 leading-relaxed">
+                                    <p className="text-slate-600 leading-relaxed mb-4">
                                         Folks tend to ignore their windshields until Mother Nature says hello with hail storms or severe weather events kick things up a notch.
-                                        After these episodes, repair shops get swamped fast. This surge pushes prices upward since everyone wants their ride fixed yesterday.
+                                        After these episodes, repair shops get swamped fast. This surge pushes prices upward since everyone wants their ride fixed yesterday. In Seattle, the transition from dry summers to wet, freezing winters often causes a spike in requests as expanding moisture turns minor chips into major cracks.
+                                    </p>
+                                    <p className="text-slate-600 leading-relaxed">
+                                        Planning your repair during the shoulder seasons or immediately after a rock strike is the best way to avoid surge pricing and ensure your safety. We provide [free estimates](/contact/) to help you budget for these necessary repairs before they become emergencies.
                                     </p>
                                 </div>
                                 <div>
-                                    <h4 className="text-lg font-semibold text-slate-800 mb-2">Regulatory Changes</h4>
-                                    <p className="text-slate-600 leading-relaxed">
+                                    <h4 className="text-lg font-semibold text-slate-800 mb-2">Regulatory Changes & Vehicle Safety</h4>
+                                    <p className="text-slate-600 leading-relaxed mb-4">
                                         Suppose there have been recent changes, like new laws requiring windshield checks for vehicle inspections before registration renewal.
-                                        In that case, it can lead to a rush for services. Providers may then raise their prices to take advantage of sudden influx of customers.
+                                        In that case, it can lead to a rush for services. Providers may then raise their prices to take advantage of sudden influx of customers. Furthermore, modern vehicles with Advanced Driver Assistance Systems (ADAS) require precise windshield calibrations, which can influence the overall cost of glass services.
+                                    </p>
+                                    <p className="text-slate-600 leading-relaxed">
+                                        At Seattle Auto Glass LLC, we maintain transparent pricing despite market fluctuations. We work closely with [insurance providers](/insurance/) to ensure our customers receive the best possible value and service quality, regardless of the current demand levels.
                                     </p>
                                 </div>
                             </div>

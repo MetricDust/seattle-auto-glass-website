@@ -25,11 +25,11 @@ export default function GlassHeader() {
           <nav className="hidden md:flex items-center space-x-6">
             {[
               { name: "Home", href: "/" },
-              { name: "Process", href: "/process" },
-              { name: "Costs", href: "/costs" },
-              { name: "Insurance", href: "/insurance" },
-              { name: "FAQ", href: "/faq" },
-              { name: "Contact", href: "/contact" },
+              { name: "Process", href: "/process/" },
+              { name: "Costs", href: "/costs/" },
+              { name: "Insurance", href: "/insurance/" },
+              { name: "FAQ", href: "/faq/" },
+              { name: "Contact", href: "/contact/" },
             ].map((item) => (
               <Link
                 key={item.name}
@@ -78,11 +78,11 @@ export default function GlassHeader() {
             <div className="glass-panel rounded-2xl p-4 flex flex-col space-y-4 mx-4">
               {[
                 { name: "Home", href: "/" },
-                { name: "Process", href: "/process" },
-                { name: "Costs", href: "/costs" },
-                { name: "Insurance", href: "/insurance" },
-                { name: "FAQ", href: "/faq" },
-                { name: "Contact", href: "/contact" },
+                { name: "Process", href: "/process/" },
+                { name: "Costs", href: "/costs/" },
+                { name: "Insurance", href: "/insurance/" },
+                { name: "FAQ", href: "/faq/" },
+                { name: "Contact", href: "/contact/" },
               ].map((item) => (
                 <Link
                   key={item.name}

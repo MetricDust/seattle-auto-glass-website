@@ -14,22 +14,21 @@ const insuranceSteps = [
         icon: Shield,
         title: "The Lowdown on Coverage and Deductibles",
         description: "First, be aware that comprehensive insurance often covers windshield repairs.",
-        details: "However, whether you'll have to pay out-of-pocket depends on your deductible. If auto glass repair cost is less than your deductible, you pay. If it's more, insurance covers it.",
-        highlight: "To make things even more interesting—some states have zero-deductible policies for windshield damage because clear vision equals safer driving. So yeah, geography matters when we're talking glass care."
+        details: "However, whether you'll have to pay out-of-pocket depends on your deductible structure. If the auto glass repair cost is less than your deductible, you typically pay the full amount. If it's more, the insurance company covers the remainder. Many drivers are surprised to learn that a rock chip repair is often fully covered with no out-of-pocket cost, as insurers prefer a $60-100 repair over a $500-1000 replacement later.",
+        highlight: "To make things even more interesting—some states have specific zero-deductible policies for windshield damage because maintaining a clear, unobstructed line of sight is a critical safety requirement. We can help you verify your specific coverage details during our initial consultation."
     },
     {
         icon: FileText,
         title: "Navigating Claims Without Cracks in Your Sanity",
         description: "Making a claim should be as smooth as freshly installed auto glass—not frustrating enough to cause another chip.",
-        details: "Start by contacting your insurer; they usually have an online claims process that's pretty user-friendly or an app that guides you through step-by-step, like a GPS, but for paperwork.",
-        requirements: "You'll want proof of what happened (photos are golden), details about when and where (they love specifics), and possibly which reputable shop will do the work—more on why 'reputable' is critical in a sec."
+        details: "The process usually starts by contacting your insurance provider's glass claims department. Most major carriers now offer streamlined online processing through their mobile apps. This allows you to upload photos of the damage and select a reputable shop like Seattle Auto Glass LLC directly from your phone. Handling the claim correctly from the start ensures that your lifetime warranty is honored and the billing process is seamless.",
+        requirements: "You'll want to have clear photos of the impact point, the date and approximate location of the incident, and your policy number ready. Providing these details upfront helps prevent delays. We specialize in insurance-approved repairs and can guide you through every step of the documentation process."
     },
     {
         icon: CheckCircle,
         title: "Finding Repair Shops Through Your Insurer",
         description: "Here's a good tip: contact your insurance company first.",
-        details: "They often work with reputable auto glass services that offer fair prices. In some cases, they may even waive part or all of your deductible, thanks to state regulations.",
-        warning: "Remember, though—cheaper isn't always better. Just because someone offers low prices doesn't mean their resin knows its job any better."
+        details: "While insurers often suggest 'preferred' national chains, you have the legal right to choose any reputable auto glass service you trust. Local shops like ours often provide more personalized service and higher quality resin than high-volume national retailers. We work with all major carriers to ensure their standards are met while providing the superior craftsmanship our Seattle customers expect. Remember, a cheaper repair estimate isn't always better for the long-term clarity and strength of your windshield."
     }
 ];
 
@@ -119,16 +118,6 @@ export default function InsuranceContent() {
                                             </div>
                                         )}
 
-                                        {step.warning && (
-                                            <div className="bg-amber-50 rounded-2xl p-6 border border-amber-200">
-                                                <div className="flex items-start gap-3">
-                                                    <AlertCircle className="w-5 h-5 text-amber-600 mt-1 flex-shrink-0" />
-                                                    <p className="text-amber-800 leading-relaxed">
-                                                        {step.warning}
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        )}
                                     </div>
                                 </div>
                             </motion.div>

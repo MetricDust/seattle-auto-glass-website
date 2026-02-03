@@ -88,7 +88,7 @@ export default function GlassFooter() {
                 </li>
                 <li>
                   <a
-                    href="/process"
+                    href="/process/"
                     className="text-slate-600 hover:text-blue-600 transition-colors"
                   >
                     Process
@@ -96,7 +96,7 @@ export default function GlassFooter() {
                 </li>
                 <li>
                   <a
-                    href="/insurance"
+                    href="/insurance/"
                     className="text-slate-600 hover:text-blue-600 transition-colors"
                   >
                     Insurance
@@ -105,7 +105,7 @@ export default function GlassFooter() {
 
                 <li>
                   <a
-                    href="/contact"
+                    href="/contact/"
                     className="text-slate-600 hover:text-blue-600 transition-colors"
                   >
                     Contact
@@ -125,10 +125,7 @@ export default function GlassFooter() {
                   </a>
                 </li>
                 <li className="flex items-start space-x-3 text-slate-600">
-                  <Mail
-                    className="w-5 h-5 md:w-8 md:h-8 text-blue-500 mt-0.5 md:mt-0"
-                    style={{ minWidth: "1.25rem", minHeight: "1.25rem" }}
-                  />
+                  <Mail className="w-5 h-5 text-blue-500 mt-0.5 md:mt-0" />
                   <a
                     href="mailto:kyle@seattleautoglassllc.com"
                     className="hover:text-blue-600"

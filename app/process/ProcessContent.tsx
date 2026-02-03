@@ -15,20 +15,20 @@ const processSteps = [
     {
         icon: Shield,
         title: "Initial Assessment",
-        description: "Your auto glass expert starts with an eagle-eyed inspection of the damage. They're not just looking at size; they assess depth and location to ensure repairs won't compromise your ride's structural integrity. Think of them as doctors for your car – no one wants surgery without a proper diagnosis.",
-        details: "A clean surface is critical to success here, so dirt and moisture are removed before any real action occurs. It's like prepping for paint – skip this step, and you'll be sorry later."
+        description: "Your auto glass expert starts with an eagle-eyed inspection of the damage. They're not just looking at the size of the chip; they carefully assess the depth of the impact and its proximity to the edges of the glass. This is crucial because damage near the edge can compromise the entire windshield's structural integrity more quickly than a centered chip. Think of them as specialized glass diagnosticians ensuring your vehicle remains safe for the road.",
+        details: "A perfectly clean surface is the foundation of a successful repair. We use industrial cleaners and specialized tools to remove every trace of dirt, moisture, and loose glass shards from the impact point. Any contamination left behind can prevent the resin from bonding properly, leading to a failed repair. This preparation step is where most DIY attempts fail, making professional [windshield repair](/process/) the only choice for long-term safety."
     },
     {
         icon: Wrench,
         title: "The Resin Application",
-        description: "After preparing the area, the technician uses high-quality resin designed for cars to restore strength and clarity. They inject it into the chip with precise equipment, ensuring no spills or gaps, like filling fine cracks in delicate china.",
-        details: "Curing under UV light hardens resin quickly. Patience might be virtuous elsewhere, but not in windshield repair land where time is money."
+        description: "After the area is prepped and vacuumed of air, our technicians use precision injectors to introduce high-quality, optically-clear resin into the break. This resin is engineered to match the refractive index of your auto glass, which is what makes the repair nearly invisible to the naked eye. We apply consistent pressure to ensure the resin penetrates every tiny fissure radiating from the central chip, restoring the strength of the glass to its original factory standards.",
+        details: "Once the resin is perfectly placed, we use a high-intensity UV light to initiate the curing process. This hardens the resin in minutes, creating a permanent bond that is as strong as the glass itself. Unlike some [DIY kits](/faq/), our professional-grade UV lamps ensure a deep, even cure that won't yellow or shrink over time, even under the harsh Seattle sun or freezing winter temperatures."
     },
     {
         icon: Sparkles,
         title: "Precision Polishing",
-        description: "Last up? A meticulous polish that ensures nothing is left behind but smooth sailing. No bumps or rough patches are allowed when striving for invisibility post-repair.",
-        details: "This finishing touch returns that out-of-showroom shine while guaranteeing safety since even minor imperfections can lead to significant visibility issues."
+        description: "The final step is what gives the repair its 'wow' factor. We remove any excess surface resin and apply a specialized pit polish to the impact point. Our technicians then perform a meticulous hand-buffing process to ensure the surface of the windshield is perfectly smooth and level with the surrounding glass. This attention to detail eliminates any bumps or rough patches that could catch on your windshield wipers or cause distracting glare.",
+        details: "This finishing touch doesn't just return a showroom shine; it's a vital safety check. Minor imperfections on the surface can lead to visibility issues during night driving or in heavy rain. By guaranteeing a smooth, invisible finish, we ensure that your vision remains clear and your wipers function flawlessly. Our [precision polishing](/process/) is the hallmark of a Seattle Auto Glass LLC repair."
     }
 ];
 
@@ -109,8 +109,6 @@ export default function ProcessContent() {
                             </div>
                         </div>
                     </section>
-
-                    {/* When to Repair Section */}
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}

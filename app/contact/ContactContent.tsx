@@ -126,9 +126,12 @@ export default function ContactContent() {
                                 With Us
                             </span>
                         </h1>
-                        <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
+                        <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed mb-6">
                             Have a chipped windshield and need auto glass repair services?
-                            Our expert team is ready to help you get back on the road safely.
+                            Our expert team is ready to help you get back on the road safely with our premium mobile service.
+                        </p>
+                        <p className="text-lg text-slate-500 max-w-2xl mx-auto">
+                            Whether you need a quick rock chip repair or a full assessment for an insurance claim, we're here to provide fast, professional, and reliable service across the greater Seattle metropolitan area.
                         </p>
                     </motion.div>
 
@@ -154,15 +157,32 @@ export default function ContactContent() {
                                         href={info.action}
                                         className="inline-flex items-center gap-2 mt-4 px-6 py-3 bg-gradient-to-r from-blue-600 to-cyan-500 text-white rounded-full font-semibold hover:scale-105 transition-transform"
                                     >
-                                        {info.title === "Call Us" && <Phone className="w-4 h-4" />}
-                                        {info.title === "Email Us" && <Mail className="w-4 h-4" />}
-                                        {info.title === "Visit Us" && <MapPin className="w-4 h-4" />}
-                                        {info.title === "Business Hours" && <Clock className="w-4 h-4" />}
                                         <span>Get Started</span>
                                     </a>
                                 )}
                             </motion.div>
                         ))}
+                    </div>
+
+                    <div className="grid lg:grid-cols-2 gap-12 mb-24">
+                        <div className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-3xl p-10 border border-blue-100">
+                            <h3 className="text-2xl font-bold text-slate-900 mb-6">Our Response Guarantee</h3>
+                            <p className="text-slate-700 leading-relaxed mb-6">
+                                When you contact Seattle Auto Glass LLC, you're not just another number. We understand that auto glass issues can be stressful and often require immediate attention to prevent further damage. That's why we guarantee a response to all inquiries within 24 hours during normal business days.
+                            </p>
+                            <p className="text-slate-700 leading-relaxed">
+                                Our technicians are trained to provide accurate estimates over the phone based on photos or descriptions of your damage. We'll walk you through the [repair process](/process/) and help you determine if your insurance will cover the cost, often resulting in a same-day or next-day appointment.
+                            </p>
+                        </div>
+                        <div className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-3xl p-10 border border-blue-100">
+                            <h3 className="text-2xl font-bold text-slate-900 mb-6">Seattle Service Coverage</h3>
+                            <p className="text-slate-700 leading-relaxed mb-6">
+                                We proudly serve the entire Seattle area, focusing on neighborhood convenience. From the historic streets of Queen Anne to the bustling centers of Bellevue and Kirkland, our mobile units are fully equipped to handle any rock chip repair on-site.
+                            </p>
+                            <p className="text-slate-700 leading-relaxed">
+                                Need us to come to your workplace in Downtown Seattle? No problem. Prefer an appointment at your home in Ballard or Shoreline? We've got you covered. Our goal is to make [auto glass service](/costs/) as seamless and integrated into your daily routine as possible.
+                            </p>
+                        </div>
                     </div>
 
 

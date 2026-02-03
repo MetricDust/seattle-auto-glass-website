@@ -53,14 +53,14 @@ export default function ServiceGlassOverlay({
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-6 leading-[0.9] tracking-tighter drop-shadow-2xl">
                 SEATTLE&apos;S FINEST <br />
                 <span className="text-transparent bg-clip-text bg-[linear-gradient(to_right,#60a5fa,#67e8f9,#ffffff,#67e8f9,#60a5fa)] bg-[length:200%_auto] animate-shine">
-                  WINDSHIELD ROCK CHIP 
+                  WINDSHIELD ROCK CHIP
                 </span>{" "}
                 <br />
                 SPECIALISTS
               </h1>
 
               <p className="text-xl md:text-2xl text-slate-200 font-light max-w-xl border-l-4 border-blue-500/50 pl-6 mt-8 backdrop-blur-sm">
-                Fast. Invisible. Guaranteed. <br />
+                Fast, invisible, and guaranteed. <br />
                 <span className="text-white font-semibold">
                   Serving Seattle with Pride.
                 </span>

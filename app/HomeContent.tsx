@@ -8,8 +8,8 @@ import ServiceGlassOverlay from "@/components/ServiceGlassOverlay";
 import GlassServiceGrid from "@/components/GlassServiceGrid";
 import GlassProcessSection from "@/components/GlassProcessSection";
 import InsuranceGlassPanel from "@/components/InsuranceGlassPanel";
+import SEOContentSection from "@/components/SEOContentSection";
 import GlassFooter from "@/components/GlassFooter";
-
 export default function HomeContent() {
     const containerRef = useRef<HTMLDivElement>(null);
     const { scrollYProgress } = useScroll({
@@ -47,6 +47,7 @@ export default function HomeContent() {
                 <GlassServiceGrid />
                 <GlassProcessSection />
                 <InsuranceGlassPanel />
+                <SEOContentSection />
                 <GlassFooter />
             </div>
         </main>
