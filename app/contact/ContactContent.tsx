@@ -171,7 +171,7 @@ export default function ContactContent() {
                                 When you contact Seattle Auto Glass LLC, you're not just another number. We understand that auto glass issues can be stressful and often require immediate attention to prevent further damage. That's why we guarantee a response to all inquiries within 24 hours during normal business days.
                             </p>
                             <p className="text-slate-700 leading-relaxed">
-                                Our technicians are trained to provide accurate estimates over the phone based on photos or descriptions of your damage. We'll walk you through the [repair process](/process/) and help you determine if your insurance will cover the cost, often resulting in a same-day or next-day appointment.
+                                Our technicians are trained to provide accurate estimates over the phone based on photos or descriptions of your damage. We'll walk you through the repair process and help you determine if your insurance will cover the cost, often resulting in a same-day or next-day appointment.
                             </p>
                         </div>
                         <div className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-3xl p-10 border border-blue-100">
@@ -180,7 +180,7 @@ export default function ContactContent() {
                                 We proudly serve the entire Seattle area, focusing on neighborhood convenience. From the historic streets of Queen Anne to the bustling centers of Bellevue and Kirkland, our mobile units are fully equipped to handle any rock chip repair on-site.
                             </p>
                             <p className="text-slate-700 leading-relaxed">
-                                Need us to come to your workplace in Downtown Seattle? No problem. Prefer an appointment at your home in Ballard or Shoreline? We've got you covered. Our goal is to make [auto glass service](/costs/) as seamless and integrated into your daily routine as possible.
+                                Need us to come to your workplace in Downtown Seattle? No problem. Prefer an appointment at your home in Ballard or Shoreline? We've got you covered. Our goal is to make auto glass service as seamless and integrated into your daily routine as possible.
                             </p>
                         </div>
                     </div>

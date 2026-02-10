@@ -12,7 +12,7 @@ const GlassHeader = dynamic(() => import("../../components/GlassHeader"), {
 const faqs = [
     {
         question: "How much is a stone chip repair?",
-        answer: "Fixing a stone chip typically costs between $60 to $100. This pricing can vary based on the size of the damage, the depth of the chip, and your vehicle's specific make and model. We provide transparent [cost breakdowns](/costs/) to help you understand what you're paying for.",
+        answer: "Fixing a stone chip typically costs between $60 to $100. This pricing can vary based on the size of the damage, the depth of the chip, and your vehicle's specific make and model. We provide transparent cost breakdowns to help you understand what you're paying for.",
         icon: DollarSign,
         color: "from-green-500 to-emerald-500"
     },
@@ -24,13 +24,13 @@ const faqs = [
     },
     {
         question: "Can I fix a chip in my windshield by myself?",
-        answer: "While DIY kits are available for $10-25, they often lack the industrial vacuum tools and specialized resins used by pros. An improper DIY job can leave air bubbles trapped in the glass, making it impossible to perform a professional fix later. Check our [DIY vs Pro advice](/faq/) for more details.",
+        answer: "While DIY kits are available for $10-25, they often lack the industrial vacuum tools and specialized resins used by pros. An improper DIY job can leave air bubbles trapped in the glass, making it impossible to perform a professional fix later. Contact us for more details.",
         icon: Wrench,
         color: "from-purple-500 to-pink-500"
     },
     {
         question: "Is a chip in a windshield a big deal?",
-        answer: "Yes, even a tiny nick can compromise the safety of your vehicle. Windshields are designed to support the roof during a rollover and facilitate proper airbag deployment. A small blemish can quickly spider out into a large crack due to temperature changes or road vibration, leading to a much more expensive [replacement](/costs/).",
+        answer: "Yes, even a tiny nick can compromise the safety of your vehicle. Windshields are designed to support the roof during a rollover and facilitate proper airbag deployment. A small blemish can quickly spread out into a large crack due to temperature changes or road vibration, leading to a much more expensive replacement.",
         icon: AlertTriangle,
         color: "from-red-500 to-orange-500"
     }

@@ -14,13 +14,13 @@ const costFactors = [
         icon: DollarSign,
         title: "The Size Matters",
         description: "Fixing a small chip is cheaper than a larger crack; why?",
-        details: "Because minor issues can often be filled in quickly, while bigger ones might require more complicated repairs to prevent them from worsening, it's like patching a small hole in your jeans versus mending a big tear. A small rock chip, typically smaller than a quarter, requires less resin and labor. However, if that chip begins to spider out into a complex crack, the structural integrity of the windshield is compromised, necessitating a more intensive repair process or a full replacement. We recommend addressing minor dings immediately to keep your [windshield repair costs](/costs/) as low as possible."
+        details: "Because minor issues can often be filled in quickly, while bigger ones might require more complicated repairs to prevent them from worsening, it's like patching a small hole in your jeans versus mending a big tear. A small rock chip, typically smaller than a quarter, requires less resin and labor. However, if that chip begins to spread out into a complex crack, the structural integrity of the windshield is compromised, necessitating a more intensive repair process or a full replacement. We recommend addressing minor chips immediately to keep your windshield repair costs as low as possible."
     },
     {
         icon: TrendingUp,
         title: "Type of Damage Counts Too",
         description: "Not all windshield villains strike equally.",
-        details: "Some chips are superficial round dings; others look like stars or bullseyes, with cracks shooting outward. These varying shapes also influence repair costs because some require more complex fixes to restore integrity to the glass. Star-shaped breaks, for instance, have micro-cracks that need to be fully vacuumed and filled to ensure they don't expand. Bullseyes are generally easier to fill, but their depth can affect the final clarity of the repair. Our technicians use specialized [repair processes](/process/) tailored to each specific type of damage."
+        details: "Some chips are superficial round dings; others look like stars or bullseyes, with cracks shooting outward. These varying shapes also influence repair costs because some require more complex fixes to restore integrity to the glass. Star-shaped breaks, for instance, have micro-cracks that need to be fully vacuumed and filled to ensure they don't expand. Bullseyes are generally easier to fill, but their depth can affect the final clarity of the repair. Our technicians use specialized repair processes tailored to each specific type of damage."
     },
     {
         icon: MapPin,
@@ -157,7 +157,7 @@ export default function CostsContent() {
                                         After these episodes, repair shops get swamped fast. This surge pushes prices upward since everyone wants their ride fixed yesterday. In Seattle, the transition from dry summers to wet, freezing winters often causes a spike in requests as expanding moisture turns minor chips into major cracks.
                                     </p>
                                     <p className="text-slate-600 leading-relaxed">
-                                        Planning your repair during the shoulder seasons or immediately after a rock strike is the best way to avoid surge pricing and ensure your safety. We provide [free estimates](/contact/) to help you budget for these necessary repairs before they become emergencies.
+                                        Planning your repair during seasonal lulls or immediately after a rock strike is the best way to avoid surge pricing and ensure your safety. We provide free estimates to help you budget for these necessary repairs before they become emergencies.
                                     </p>
                                 </div>
                                 <div>
@@ -167,7 +167,7 @@ export default function CostsContent() {
                                         In that case, it can lead to a rush for services. Providers may then raise their prices to take advantage of sudden influx of customers. Furthermore, modern vehicles with Advanced Driver Assistance Systems (ADAS) require precise windshield calibrations, which can influence the overall cost of glass services.
                                     </p>
                                     <p className="text-slate-600 leading-relaxed">
-                                        At Seattle Auto Glass LLC, we maintain transparent pricing despite market fluctuations. We work closely with [insurance providers](/insurance/) to ensure our customers receive the best possible value and service quality, regardless of the current demand levels.
+                                        At Seattle Auto Glass LLC, we maintain transparent pricing despite market fluctuations. We work closely with insurance providers to ensure our customers receive the best possible value and service quality, regardless of the current demand levels.
                                     </p>
                                 </div>
                             </div>

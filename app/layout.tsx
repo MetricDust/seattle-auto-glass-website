@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     "auto glass",
     "chipped windshield",
     "chip repair",
-    "damaged windshield repair",
+    "damaged windshield",
     "chipped windshield repair",
     "windshield repair",
     "windshield replacement",

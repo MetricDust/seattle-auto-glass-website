@@ -69,8 +69,8 @@ export default function GlassFooter() {
                 </span>
               </div>
               <p className="text-slate-600 leading-relaxed">
-                Queens Annes Windshield Chip Repair Specialists. Fast,
-                invisible, and guaranteed repairs serving Seattle with pride.
+                Windshield Chip Repair Specialists. Fast,
+                invisible, and guaranteed repairs, serving Seattle with pride.
               </p>
             </div>
 

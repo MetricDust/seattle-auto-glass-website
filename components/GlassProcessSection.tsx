@@ -15,7 +15,7 @@ const steps = [
     number: "01",
     title: "Initial Assessment",
     description:
-      "Your auto glass expert starts with an eagle-eyed inspection of the damage. They’re not just looking at size; they assess depth and location to ensure repairs won’t compromise your ride’s structural integrity. Think of it as a proper diagnosis before surgery – we ensure your safety first.",
+      "Our auto glass experts start with an eagle-eyed inspection of the damage. We’re not just looking at size; we assess depth and location to ensure repairs won’t compromise your ride’s structural integrity. Think of it as a proper diagnosis before surgery – we ensure your safety first.",
   },
   {
     number: "02",
